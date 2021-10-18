@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/comparing-google-analytics-and-plausible-numbers", {data:[{}],fetch:{},mutations:[]});

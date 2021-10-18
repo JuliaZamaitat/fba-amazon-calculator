@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/developer-decisions-for-building-flexible-components", {data:[{}],fetch:{},mutations:[]});

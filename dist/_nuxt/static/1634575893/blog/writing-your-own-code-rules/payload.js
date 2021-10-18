@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/writing-your-own-code-rules", {data:[{}],fetch:{},mutations:[]});

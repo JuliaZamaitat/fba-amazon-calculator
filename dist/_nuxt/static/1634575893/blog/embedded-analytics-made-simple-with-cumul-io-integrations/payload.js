@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/embedded-analytics-made-simple-with-cumul-io-integrations", {data:[{}],fetch:{},mutations:[]});
