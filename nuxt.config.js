@@ -1,14 +1,20 @@
-//import axios from 'axios';
-// import baseURL from './helper/url';
-// let dynamicRoutes = () => {
-//   return axios.get(baseURL.baseURL).then((res) => {
-//     console.log(res.data.map((post) => `/blog/${post.slug}`));
-//     return res.data.map((post) => `/blog/${post.slug}`);
-//   });
-// };
+import axios from 'axios';
+import { baseURL } from './helper/url';
+console.log(baseURL);
+let dynamicRoutes = () => {
+  return (
+    axios
+      .get('http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts')
+      // .get(baseURL)
+      .then((res) => {
+        return res.data.map((post) => `/blog/${post.slug}`);
+      })
+  );
+};
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'fba-amazon-calculator',
@@ -46,8 +52,8 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   eslint: {
     fix: true
+  },
+  generate: {
+    routes: dynamicRoutes
   }
-  // generate: {
-  //   routes: dynamicRoutes
-  // }
 };
