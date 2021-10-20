@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/blog/three-digit-browser-versions-in-march-2022", {data:[{}],fetch:{},mutations:[]});
