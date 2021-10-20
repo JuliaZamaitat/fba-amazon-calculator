@@ -19,7 +19,6 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts({ state, commit }) {
-    // eslint-disable-next-line no-undef
     if (state.posts.length) return;
     try {
       let posts = await axios.get(baseURL).then((res) => res.data);

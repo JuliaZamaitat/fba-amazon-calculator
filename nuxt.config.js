@@ -1,15 +1,10 @@
 import axios from 'axios';
-import { baseURL } from './helper/url';
-console.log(baseURL);
 let dynamicRoutes = () => {
-  return (
-    axios
-      .get('http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts')
-      // .get(baseURL)
-      .then((res) => {
-        return res.data.map((post) => `/blog/${post.slug}`);
-      })
-  );
+  return axios
+    .get('http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts')
+    .then((res) => {
+      return res.data.map((post) => `/blog/${post.slug}`);
+    });
 };
 export default {
   // Target: https://go.nuxtjs.dev/config-target

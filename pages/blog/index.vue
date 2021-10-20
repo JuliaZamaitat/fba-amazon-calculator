@@ -15,11 +15,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      // posts: []
-    };
-  },
   computed: {
     posts() {
       return this.$store.state.posts;
