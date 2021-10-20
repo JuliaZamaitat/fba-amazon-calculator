@@ -16,12 +16,11 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts({ state, commit }) {
-    const config = require('../nuxt.config.js');
     // eslint-disable-next-line no-undef
     if (state.posts.length) return;
     var url;
-    console.log(config.dev);
-    if (config.dev) {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== 'development') {
       url = url = '/api/posts';
     } else {
       url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
