@@ -5,10 +5,10 @@
     <div v-for="post in posts" :key="post.id" class="post">
       <h3>
         <!-- for each one of them, we’ll render their title, and link off to their individual page -->
-        <a :href="`blog/${post.slug}`">{{ post.title.rendered }}</a>
+        <a :href="`/blog/${post.slug}`">{{ post.title.rendered }}</a>
       </h3>
       <div v-html="post.excerpt.rendered"></div>
-      <a :href="`blog/${post.slug}`" class="readmore">Read more ⟶</a>
+      <a :href="`/blog/${post.slug}`" class="readmore">Read more ⟶</a>
     </div>
   </div>
 </template>
