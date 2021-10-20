@@ -22,7 +22,8 @@ export const actions = {
     if (process.env.ENV == 'production') {
       url = '/api/posts';
     } else {
-      url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
+      //url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
+      url = '/api/posts';
     }
     try {
       let posts = await fetch(url).then((res) => res.json());
