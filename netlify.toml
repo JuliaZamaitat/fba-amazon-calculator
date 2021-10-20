@@ -1,15 +1,2 @@
 [build.environment]
   NODE_VERSION="14.0.0"
-
-  # The following redirect is intended for use with most SPAs that handle
-# routing internally.
-[[redirects]]
-  from = "/api/*"
-  to = "http://b10ptpl.myraidbox.de/wp-json/wp/v2/:splat"
-  status = 200
-
-[[headers]]
-  # Define which paths this specific [[headers]] block will cover.
-  for = "/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
