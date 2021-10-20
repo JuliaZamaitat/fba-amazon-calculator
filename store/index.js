@@ -19,7 +19,7 @@ export const actions = {
     // eslint-disable-next-line no-undef
     if (state.posts.length) return;
     var url;
-    if (process.env.NODE_ENV == 'production') {
+    if (process.env.ENV == 'production') {
       url = '/api/posts';
     } else {
       url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
