@@ -4,7 +4,7 @@
   # The following redirect is intended for use with most SPAs that handle
 # routing internally.
 [[redirects]]
-  from = "/api/*
+  from = "/api/*"
   to = "http://b10ptpl.myraidbox.de/wp-json/wp/v2/:splat"
   status = 200
 
