@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/supports-selector", {data:[{}],fetch:{},mutations:[]});

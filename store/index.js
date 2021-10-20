@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { baseURL } from '~/helper/url';
+
 export const state = () => ({
   posts: []
 });
@@ -18,15 +21,8 @@ export const actions = {
   async fetchPosts({ state, commit }) {
     // eslint-disable-next-line no-undef
     if (state.posts.length) return;
-    var url;
-    console.log(process.env.NODE_ENV);
-    if (process.env.NODE_ENV !== 'development') {
-      url = url = '/api/posts';
-    } else {
-      url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
-    }
     try {
-      let posts = await fetch(url).then((res) => res.json());
+      let posts = await axios.get(baseURL).then((res) => res.data);
       posts = posts
         .filter((el) => el.status === 'publish')
         .map(({ id, slug, title, excerpt, date, tags, content }) => ({

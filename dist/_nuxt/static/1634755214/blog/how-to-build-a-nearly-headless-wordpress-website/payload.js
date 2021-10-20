@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/how-to-build-a-nearly-headless-wordpress-website", {data:[{}],fetch:{},mutations:[]});

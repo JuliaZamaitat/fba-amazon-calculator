@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/woocommerce-google-analytics", {data:[{}],fetch:{},mutations:[]});

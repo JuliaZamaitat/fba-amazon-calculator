@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/creating-your-own-bragdoc-with-eleventy", {data:[{}],fetch:{},mutations:[]});

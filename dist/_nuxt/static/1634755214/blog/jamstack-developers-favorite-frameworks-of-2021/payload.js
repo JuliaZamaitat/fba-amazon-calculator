@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/jamstack-developers-favorite-frameworks-of-2021", {data:[{}],fetch:{},mutations:[]});

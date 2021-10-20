@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/css-is-going-gosh-darned-hog-wild-i-tell-ya-what", {data:[{}],fetch:{},mutations:[]});

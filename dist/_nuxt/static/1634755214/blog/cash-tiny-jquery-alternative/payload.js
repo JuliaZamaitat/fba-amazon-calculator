@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/cash-tiny-jquery-alternative", {data:[{}],fetch:{},mutations:[]});

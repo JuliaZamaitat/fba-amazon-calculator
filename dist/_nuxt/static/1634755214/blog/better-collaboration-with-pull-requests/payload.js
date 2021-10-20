@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/better-collaboration-with-pull-requests", {data:[{}],fetch:{},mutations:[]});

@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog/jekyll-doesnt-do-components-liar", {data:[{}],fetch:{},mutations:[]});
