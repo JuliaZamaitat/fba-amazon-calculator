@@ -9,7 +9,7 @@ let dynamicRoutes = () => {
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+  dev: process.env.NODE_ENV == 'production',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'fba-amazon-calculator',

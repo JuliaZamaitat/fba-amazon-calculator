@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1634751447",layout:"default",error:a,state:{posts:[]},serverRendered:true,routePath:"\u002Fblog\u002Fbuilding-a-tennis-trivia-app-with-next-js-and-netlify",config:{_app:{basePath:"\u002F",assetsPath:"\u002F_nuxt\u002F",cdnURL:a}}}}(null));
