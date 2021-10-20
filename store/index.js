@@ -18,10 +18,14 @@ export const actions = {
   async fetchPosts({ state, commit }) {
     // eslint-disable-next-line no-undef
     if (state.posts.length) return;
+    var url;
+    if (process.env.NODE_ENV == 'production') {
+      url = '/api/posts';
+    } else {
+      url = `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`;
+    }
     try {
-      let posts = await fetch(
-        `http://b10ptpl.myraidbox.de/wp-json/wp/v2/posts`
-      ).then((res) => res.json());
+      let posts = await fetch(url).then((res) => res.json());
       posts = posts
         .filter((el) => el.status === 'publish')
         .map(({ id, slug, title, excerpt, date, tags, content }) => ({
