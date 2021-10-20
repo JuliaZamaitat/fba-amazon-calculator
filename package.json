@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_ENV=dev nuxt",
     "copy:redirects": "cp '_redirects' 'dist'",
-    "build": "nuxt generate && nuxt build",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate && yarn run copy:redirects",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
