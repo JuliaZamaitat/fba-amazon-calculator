@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{262:function(e,t,n){"use strict";n.r(t);var r={},c=n(25),component=Object(c.a)(r,(function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)}),[function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",[n("h1",[e._v("Kontakt")])])}],!1,null,"0fbde317",null);t.default=component.exports}}]);

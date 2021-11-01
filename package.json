@@ -17,7 +17,8 @@
     "axios": "^0.23.0",
     "core-js": "^3.15.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vuejs-datepicker": "^1.6.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
