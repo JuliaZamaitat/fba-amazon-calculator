@@ -1,0 +1,25 @@
+$type-scale: (
+  small: (
+    300: 0.8rem,
+  ),
+  large: (
+    300: 1rem, //16px
+    400: 1.125rem, //18px
+    500: 1.25rem, //20px
+    600: 1.875rem, //30px
+    700: 2.5rem, //40px
+  )
+);
+
+$type-weight: (
+  regular: 400,
+  bold: 700
+);
+
+
+$line-height: (
+  100: 1.125rem, //18px
+  200: 1.5rem, //24px
+  300: 2.313rem, //37px
+  400: 3.125rem //50px
+);
