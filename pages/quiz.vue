@@ -1,69 +1,127 @@
 <template>
   <div>
-    <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-purple.svg" />
-    <img class="icon-quiz-1" src="../assets/icons/icon-quiz-1.svg" />
-    <div class="questions">
-      <div class="section-1">
-        <h2>Seit wann verkaufst du aktiv auf Amazon?</h2>
-        <div class="calendar">
-          <img class="icon-calendar" src="../assets/icons/calendar.svg" />
-          <client-only>
-            <date-picker
-              :value="date"
-              name="uniquename"
-              inputClass="datepicker"
-          /></client-only>
+    <!-- STEP 1 -->
+    <div v-show="step1">
+      <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-purple.svg" />
+      <img class="icon-quiz" src="../assets/icons/icon-quiz-1.svg" />
+      <transition name="slide">
+        <div v-if="step1" class="questions">
+          <div class="section-1">
+            <h2>Seit wann verkaufst du aktiv auf Amazon?</h2>
+            <div class="calendar">
+              <img class="icon-calendar" src="../assets/icons/calendar.svg" />
+              <client-only>
+                <date-picker
+                  :value="date"
+                  name="uniquename"
+                  inputClass="datepicker"
+              /></client-only>
+            </div>
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
+          <div class="section-2">
+            <h2>Anteil von Amazon Umsatz in Prozent von Gesamtumsatz</h2>
+            <p>
+              Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
+              Gesamtumsatz.
+            </p>
+            <div>
+              <p>%</p>
+              <input
+                type="text"
+                placeholder="xx"
+                v-model="percentage"
+                @input="checkPercentage()"
+              />
+            </div>
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
         </div>
-        <img class="icon-line" src="../assets/icons/line.svg" />
-      </div>
+      </transition>
+    </div>
+    <!-- STEP 2 -->
+    <div v-show="step2">
+      <img
+        class="bg-bottom"
+        src="../assets/backgrounds/bg-bottom-purple-light.svg"
+      />
+      <img class="icon-quiz" src="../assets/icons/icon-quiz-2.svg" />
+      <transition name="slide">
+        <div v-if="step2" class="questions">
+          <div class="section-1">
+            <h2>
+              Wie hoch ist dein durchschnittlicher monatlicher Nettoumsatz?
+            </h2>
+            <div>
+              <p>€</p>
+              <input type="text" placeholder="0" v-model="netSales" />
+            </div>
 
-      <div class="section-2">
-        <h2>Anteil von Amazon Umsatz in Prozent von Gesamtumsatz</h2>
-        <p>
-          Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
-          Gesamtumsatz.
-        </p>
-        <div>
-          <p>%</p>
-          <input
-            type="text"
-            placeholder="xx"
-            v-model="percentage"
-            @input="checkPercentage()"
-          />
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
+          <div class="section-2">
+            <h2>
+              Wie hoch ist dein durchschnittliches monatliches Betriebsergebnis
+              (EBITDA)?
+            </h2>
+            <p>
+              Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
+              Gesamtumsatz.
+            </p>
+            <div>
+              <p>€</p>
+              <input type="text" placeholder="0" v-model="ebitda" />
+            </div>
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
         </div>
-        <img class="icon-line" src="../assets/icons/line.svg" />
-      </div>
+      </transition>
+    </div>
 
-      <div class="validation">
-        <ul>
-          <li class="error-message" v-for="error in errors" :key="error.id">
-            {{ error }}
-          </li>
-        </ul>
-      </div>
+    <!-- WEITER -->
+
+    <div class="validation">
+      <ul>
+        <li class="error-message" v-for="error in errors" :key="error.id">
+          {{ error }}
+        </li>
+      </ul>
+
+      <!-- <button v-show="step2" @click="back()">Zurück</button> -->
       <button
         @click="next()"
-        :disabled="errors.length != 0 || percentage == ''"
-        :class="{ disabled: errors.length != 0 || percentage == '' }"
+        :disabled="
+          errors.length != 0 ||
+          (step1 && percentage == '') ||
+          (step2 && (netSales == '' || ebitda == ''))
+        "
+        :class="{
+          disabled:
+            errors.length != 0 ||
+            (step1 && percentage == '') ||
+            (step2 && (netSales == '' || ebitda == '')),
+          'clr-purple': step2
+        }"
       >
         Weiter
       </button>
     </div>
-
     <Disclaimer />
   </div>
 </template>
 
 <script>
-import Disclaimer from '~/components/Disclaimer.vue';
 export default {
-  components: { Disclaimer },
   data() {
     return {
       date: new Date(),
       errors: [],
-      percentage: ''
+      percentage: '',
+      step1: false,
+      step2: false,
+      step3: false,
+      netSales: '',
+      ebitda: ''
     };
   },
   mounted() {
@@ -71,9 +129,24 @@ export default {
       'var(--clr-orange-100)';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
+    this.step1 = true;
   },
   methods: {
-    next() {},
+    next() {
+      if (this.step1 === true) {
+        this.step1 = false;
+        this.step2 = true;
+        // $nuxt.$emit('body-background-color', 'var(--clr-purple-200)');
+        document.querySelector('body').style.backgroundColor =
+          'var(--clr-purple-200)';
+        document.getElementsByClassName('nav')[0].style.color =
+          'var(--clr-orange-100)';
+      } else if (this.step2 === true) {
+        this.step2 = false;
+        this.step3 = true;
+      }
+    },
+    back() {},
     checkPercentage() {
       this.errors = [];
       if (
@@ -89,32 +162,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .page-enter-active,
-// .page-leave-active {
-//   position: absolute;
-//   max-width: 100%; /*make sur our content keep it's original width*/
-//   transition: all 1s ease;
-// }
+.slide-enter-active {
+  transition: transform 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
 
-// /* entering start */
-// .page-enter {
-//   top: -100%;
-// }
-
-// /* entering end */
-// .page-enter-to {
-//   top: 0;
-// }
-
-// /* leaving start */
-// .page-leave {
-//   opacity: 1;
-// }
-
-// /* leaving end */
-// .page-leave-to {
-//   opacity: 0;
-// }
+h2,
+button,
+p {
+  color: var(--clr-white-100);
+}
+.slide-enter {
+  transform: translateY(400px);
+}
 
 .questions {
   text-align: right;
@@ -129,32 +188,6 @@ export default {
   h2,
   p {
     text-align: left;
-  }
-
-  h2,
-  button,
-  p {
-    color: var(--clr-white-100);
-  }
-
-  button {
-    margin-top: 2.15em;
-    margin-right: 4em;
-    font-weight: var(--fw-bold);
-    &:hover {
-      background-color: var(--clr-white-100);
-      color: var(--clr-orange-100);
-    }
-    &.disabled {
-      cursor: auto;
-      border: 2px solid rgb(144, 144, 144);
-      color: rgb(144, 144, 144);
-
-      &:hover {
-        background-color: transparent;
-        color: rgb(144, 144, 144);
-      }
-    }
   }
 
   .icon-line {
@@ -182,7 +215,7 @@ export default {
       }
 
       ::v-deep .datepicker {
-        margin-top: 2.4em;
+        // margin-top: 2.4em;
         border: none;
         background: transparent;
         color: var(--clr-white-100);
@@ -204,8 +237,9 @@ export default {
       }
     }
   }
+
+  .section-1,
   .section-2 {
-    margin-top: 3em; //4.15em;
     text-align: left;
 
     p:first-of-type {
@@ -238,9 +272,12 @@ export default {
       }
     }
   }
+  .section-2 {
+    margin-top: 3em; //4.15em;
+  }
 }
 
-.icon-quiz-1 {
+.icon-quiz {
   position: absolute;
   top: 6em;
   right: 9em;
@@ -249,10 +286,35 @@ export default {
 }
 
 .validation {
-  display: inline;
+  max-width: 38.5em;
+  text-align: right;
   ul,
   li {
     display: inline;
+  }
+
+  button {
+    margin-top: 2.15em;
+    margin-right: 4em;
+    font-weight: var(--fw-bold);
+    &:hover {
+      background-color: var(--clr-white-100);
+      color: var(--clr-orange-100);
+
+      &.clr-purple {
+        color: var(--clr-purple-100);
+      }
+    }
+    &.disabled {
+      cursor: auto;
+      border: 2px solid rgb(144, 144, 144);
+      color: rgb(144, 144, 144);
+
+      &:hover {
+        background-color: transparent;
+        color: rgb(144, 144, 144);
+      }
+    }
   }
 
   .error-message {
