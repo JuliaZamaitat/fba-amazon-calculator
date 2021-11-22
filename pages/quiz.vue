@@ -31,7 +31,7 @@
                 type="text"
                 placeholder="xx"
                 v-model="percentage"
-                @input="checkPercentage()"
+                @input="checkPercentage(percentage)"
               />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -54,7 +54,12 @@
             </h2>
             <div>
               <p>€</p>
-              <input type="text" placeholder="0" v-model="netSales" />
+              <input
+                type="text"
+                placeholder="0"
+                v-model="netSales"
+                @input="checkNumber(netSales)"
+              />
             </div>
 
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -70,7 +75,50 @@
             </p>
             <div>
               <p>€</p>
-              <input type="text" placeholder="0" v-model="ebitda" />
+              <input
+                type="text"
+                placeholder="0"
+                v-model="ebitda"
+                @input="checkNumber(ebitda)"
+              />
+            </div>
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
+        </div>
+      </transition>
+    </div>
+
+    <!-- STEP 3 -->
+    <div v-show="step3">
+      <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-orange.svg" />
+      <img class="icon-quiz" src="../assets/icons/icon-quiz-3.svg" />
+      <transition name="slide">
+        <div v-if="step3" class="questions">
+          <div class="section-1">
+            <h2>Anzahl der bei Amazon gelisteten Produkte (ohne Varianten)</h2>
+            <div>
+              <img class="icon-dropdown" src="../assets/icons/dropdown.svg" />
+              <select v-model="productCount" class="select" name="products">
+                <option selected disabled>Hier auswählen</option>
+                <option>Weniger als 10</option>
+                <option>Mehr als 10</option>
+              </select>
+            </div>
+
+            <img class="icon-line" src="../assets/icons/line.svg" />
+          </div>
+          <div class="section-2">
+            <h2>
+              Anteil von Eigenmarken an den gelisteten Produkten in Prozent
+            </h2>
+            <div>
+              <p>%</p>
+              <input
+                type="text"
+                placeholder="xx"
+                v-model="ownProductsPercentage"
+                @input="checkPercentage(ownProductsPercentage)"
+              />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
           </div>
@@ -87,23 +135,38 @@
         </li>
       </ul>
 
-      <!-- <button v-show="step2" @click="back()">Zurück</button> -->
+      <button
+        v-show="step2 || step3"
+        @click="back()"
+        class="back-button"
+        :class="{
+          'clr-purple': step2
+        }"
+      >
+        Zurück
+      </button>
       <button
         @click="next()"
         :disabled="
           errors.length != 0 ||
           (step1 && percentage == '') ||
-          (step2 && (netSales == '' || ebitda == ''))
+          (step2 && (netSales == '' || ebitda == '')) ||
+          (step3 &&
+            (productCount == 'Hier auswählen' || ownProductsPercentage == ''))
         "
         :class="{
           disabled:
             errors.length != 0 ||
             (step1 && percentage == '') ||
-            (step2 && (netSales == '' || ebitda == '')),
-          'clr-purple': step2
+            (step2 && (netSales == '' || ebitda == '')) ||
+            (step3 &&
+              (productCount == 'Hier auswählen' || ownProductsPercentage == ''))
         }"
       >
-        Weiter
+        <span v-if="step1 || step2" :class="{ 'clr-purple': step2 }"
+          >Weiter</span
+        >
+        <span v-else :class="{ 'clr-purple': step2 }">Berechnen</span>
       </button>
     </div>
     <Disclaimer />
@@ -121,7 +184,9 @@ export default {
       step2: false,
       step3: false,
       netSales: '',
-      ebitda: ''
+      ebitda: '',
+      productCount: 'Hier auswählen',
+      ownProductsPercentage: ''
     };
   },
   mounted() {
@@ -136,7 +201,6 @@ export default {
       if (this.step1 === true) {
         this.step1 = false;
         this.step2 = true;
-        // $nuxt.$emit('body-background-color', 'var(--clr-purple-200)');
         document.querySelector('body').style.backgroundColor =
           'var(--clr-purple-200)';
         document.getElementsByClassName('nav')[0].style.color =
@@ -144,17 +208,39 @@ export default {
       } else if (this.step2 === true) {
         this.step2 = false;
         this.step3 = true;
+        document.querySelector('body').style.backgroundColor =
+          'var(--clr-purple-100)';
+      } else if (this.step3 === true) {
+        this.$router.push({
+          path: '/ergebnis'
+        });
       }
     },
-    back() {},
-    checkPercentage() {
+    back() {
+      if (this.step2 === true) {
+        document.querySelector('body').style.backgroundColor =
+          'var(--clr-orange-100)';
+        document.getElementsByClassName('nav')[0].style.color =
+          'var(--clr-purple-100)';
+        this.step1 = true;
+        this.step2 = false;
+      } else if (this.step3 === true) {
+        document.querySelector('body').style.backgroundColor =
+          'var(--clr-purple-200)';
+        this.step2 = true;
+        this.step3 = false;
+      }
+    },
+    checkPercentage(percentage) {
       this.errors = [];
-      if (
-        isNaN(this.percentage) ||
-        this.percentage > 100 ||
-        this.percentage < 0
-      ) {
+      if (isNaN(percentage) || percentage > 100 || percentage < 0) {
         this.errors.push('Ungültige Prozentangabe');
+      }
+    },
+    checkNumber(number) {
+      this.errors = [];
+      if (isNaN(number) || number < 0) {
+        this.errors.push('Ungültige Zahl');
       }
     }
   }
@@ -168,18 +254,33 @@ export default {
 
 h2,
 button,
-p {
+p,
+select {
   color: var(--clr-white-100);
+}
+
+button,
+select {
+  font-family: 'Montserrat', sans-serif;
 }
 .slide-enter {
   transform: translateY(400px);
+}
+
+select {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+  font-weight: var(--fw-thin);
+  cursor: pointer;
 }
 
 .questions {
   text-align: right;
   margin-top: 2em;
   margin-left: 4em;
-  max-width: 40em;
+  max-width: 38em;
 
   p {
     font-family: 'Montserrat', sans-serif;
@@ -215,7 +316,6 @@ p {
       }
 
       ::v-deep .datepicker {
-        // margin-top: 2.4em;
         border: none;
         background: transparent;
         color: var(--clr-white-100);
@@ -235,6 +335,10 @@ p {
         border: none;
         border-radius: 10px;
       }
+    }
+    .icon-dropdown {
+      display: inline;
+      margin-right: 20px;
     }
   }
 
@@ -280,7 +384,7 @@ p {
 .icon-quiz {
   position: absolute;
   top: 6em;
-  right: 9em;
+  right: 7em;
   max-height: 100vh;
   z-index: -10;
 }
@@ -296,13 +400,23 @@ p {
   button {
     margin-top: 2.15em;
     margin-right: 4em;
-    font-weight: var(--fw-bold);
+
     &:hover {
       background-color: var(--clr-white-100);
-      color: var(--clr-orange-100);
+    }
 
-      &.clr-purple {
-        color: var(--clr-purple-100);
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-weight: var(--fw-bold);
+      &:hover {
+        color: var(--clr-orange-100);
+        &.clr-purple {
+          color: var(--clr-purple-100);
+        }
       }
     }
     &.disabled {
@@ -314,9 +428,31 @@ p {
         background-color: transparent;
         color: rgb(144, 144, 144);
       }
+
+      span {
+        &:hover {
+          color: rgb(144, 144, 144);
+        }
+      }
+    }
+
+    &.back-button {
+      font-weight: var(--fw-thin);
+      border: 1px solid var(--clr-white-100);
+      margin-right: 1.25em;
+
+      // p:hover {
+
+      // }
+      &:hover {
+        font-weight: var(--fw-bold);
+        color: var(--clr-orange-100);
+        &.clr-purple {
+          color: var(--clr-purple-100);
+        }
+      }
     }
   }
-
   .error-message {
     color: rgb(252, 0, 0);
     margin-right: 0.3em;
