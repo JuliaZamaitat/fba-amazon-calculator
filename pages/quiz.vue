@@ -357,23 +357,6 @@ select {
         font-weight: var(--fw-bold);
         display: inline;
       }
-      input {
-        cursor: pointer;
-        background: none;
-        border: none;
-        color: var(--clr-white-100);
-        font-weight: var(--fw-thin);
-        letter-spacing: 0.1em;
-
-        &::placeholder {
-          color: var(--clr-white-100);
-          font-weight: var(--fw-thin);
-        }
-
-        &:focus-visible {
-          outline: none;
-        }
-      }
     }
   }
   .section-2 {

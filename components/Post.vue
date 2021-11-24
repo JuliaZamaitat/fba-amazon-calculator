@@ -8,7 +8,9 @@
       />
     </div>
     <div class="card__body">
-      <h3>Ich bin ein Titel</h3>
+      <h3>
+        <a :href="`/blog/${post.slug}`">{{ post.title.rendered }}</a>
+      </h3>
       <div class="meta">
         <p>Von:</p>
         <p class="bold purple">gittr</p>
@@ -17,18 +19,20 @@
         <p class="bold">|</p>
         <p class="bold purple">Amazon FBA</p>
       </div>
-      <p>
-        Wer sich mit einer eigenen Marke und einer guten Produktstrategie bei
-        Amazon auf FBA Basis (Fulfilment by Amazon) ein gewinnbringendes
-        Geschäft aufgebaut hat, steht neben diesem erfreulichen Aspekt manchmal
-        auch vor ganz neuen Hürden, die
-      </p>
+      <div class="container">
+        <p class="excerpt">{{ post.excerpt.rendered }}</p>
+      </div>
+      <a :href="`/blog/${post.slug}`" class="readmore">Read more ⟶</a>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    post: Object
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -38,9 +42,8 @@ export default {};
   flex-direction: column;
   width: clamp(22rem, calc(25rem + 2vw), 25rem);
   height: clamp(30rem, calc(30rem + 2vw), 35rem);
-
   overflow: hidden;
-  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.1rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 1em;
 
   img {
@@ -54,7 +57,7 @@ export default {};
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: clamp(10rem, calc(10rem + 2vw), 15rem);
+    min-height: 12rem;
     background-color: var(--clr-purple-100);
   }
 
@@ -83,6 +86,24 @@ export default {};
           color: #8000ff;
         }
       }
+    }
+
+    .container {
+      // height: clamp(8rem, calc(8rem + 2vw), 8rem);
+      // width: 100%;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+      // white-space: nowrap;
+    }
+
+    .excerpt {
+      // white-space: nowrap;
+      white-space: nowrap;
+      height: clamp(8rem, calc(8rem + 2vw), 8rem);
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px solid #000000;
     }
 
     p {

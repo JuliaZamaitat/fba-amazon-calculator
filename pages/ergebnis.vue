@@ -12,10 +12,30 @@
         <strong>Unternehmenswert</strong> zusammensetzt!
       </p>
       <div class="email">
-        <p>DEINE EMAIL:</p>
+        <div class="email email-input">
+          <p>DEINE EMAIL:</p>
+          <input
+            type="text"
+            placeholder="yourmail@mail.de"
+            v-model="email"
+            @input="markChecked()"
+            @blur="checkEmail(email)"
+          />
+        </div>
         <img class="icon-line" src="../assets/icons/line.svg" />
-        <div>
-          <button>Absenden</button>
+        <div class="confirm">
+          <ul>
+            <li class="error-message" v-for="error in errors" :key="error.id">
+              {{ error }}
+            </li>
+          </ul>
+          <button
+            :class="{
+              disabled: errors.length != 0 || email == '' || !emailChecked
+            }"
+          >
+            Absenden
+          </button>
         </div>
       </div>
     </div>
@@ -23,9 +43,9 @@
     <div class="blog">
       <h2 class="uppercase">Unser Blog</h2>
       <div class="blog blog-posts">
-        <Post />
-        <Post />
-        <Post />
+        <div v-for="post in posts" :key="post.id" class="post">
+          <Post :post="post" />
+        </div>
       </div>
     </div>
 
@@ -38,16 +58,43 @@
 </template>
 
 <script>
-import Newsletter from '~/components/Newsletter.vue';
 export default {
-  components: { Newsletter },
+  data() {
+    return {
+      email: '',
+      errors: [],
+      emailChecked: false
+    };
+  },
+  computed: {
+    posts() {
+      return this.$store.state.posts.slice(0, 3);
+    }
+  },
+
+  async created() {
+    await this.$store.dispatch('fetchPosts');
+  },
   mounted() {
     document.querySelector('body').style.backgroundColor =
       'var(--clr-orange-100)';
-
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
-    this.step1 = true;
+  },
+  methods: {
+    markChecked() {
+      this.emailChecked = false;
+    },
+    checkEmail(email) {
+      this.errors = [];
+      this.emailChecked = true;
+      var re = /\S+@\S+\.\S+/;
+      if (re.test(email)) {
+        //send email
+      } else if (email != '') {
+        this.errors.push('Ungültige Email');
+      }
+    }
   }
 };
 </script>
@@ -55,7 +102,7 @@ export default {
 <style lang="scss" scoped>
 h1 {
   color: var(--clr-white-100);
-  font-size: var(--fs-800);
+  font-size: var(--fs-900);
   margin-bottom: 0.4em;
 }
 
@@ -100,18 +147,42 @@ p {
 }
 
 .email {
-  margin: 2.5em 0;
+  &-input {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 2.5em;
+    max-width: 100%;
 
-  p {
-    font-weight: var(--fw-bold);
-    margin-bottom: 0.8em;
+    p {
+      display: inline;
+      font-weight: var(--fw-bold);
+      margin-bottom: 19px;
+    }
+    input {
+      flex: 1;
+      margin: 0 4em 0 2em;
+    }
   }
 
-  div {
+  .confirm {
+    ul,
+    li {
+      display: inline;
+    }
     text-align: right;
     button {
       margin-top: 2.15em;
       margin-right: 4em;
+      &.disabled {
+        cursor: auto;
+        border: 2px solid rgb(144, 144, 144);
+        color: rgb(144, 144, 144);
+
+        &:hover {
+          background-color: transparent;
+          color: rgb(144, 144, 144);
+        }
+      }
     }
   }
 }
@@ -144,5 +215,10 @@ p {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.error-message {
+  color: rgb(252, 0, 0);
+  margin-right: 0.3em;
 }
 </style>
