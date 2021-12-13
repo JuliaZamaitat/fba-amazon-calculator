@@ -1,29 +1,28 @@
 <template>
   <div class="card">
-    <div class="card__header">
-      <img
-        src="../assets/icons/icon-post.svg"
-        alt="card__image"
-        class="card__image"
-      />
-    </div>
-    <div class="card__body">
-      <h3>
-        <a :href="`/blog/${post.slug}`">{{ post.title.rendered }}</a>
-      </h3>
-      <div class="meta">
-        <p>Von:</p>
-        <p class="bold purple">gittr</p>
-        <p class="bold">|</p>
-        <p class="bold purple">Nov: 18, 2021</p>
-        <p class="bold">|</p>
-        <p class="bold purple">Amazon FBA</p>
+    <a :href="`/blog/${post.slug}`">
+      <div class="card__header">
+        <img
+          src="../assets/icons/icon-post.svg"
+          alt="card__image"
+          class="card__image"
+        />
       </div>
-      <div class="container">
-        <p class="excerpt">{{ post.excerpt.rendered }}</p>
+      <div class="card__body">
+        <h3>
+          <a :href="`/blog/${post.slug}`">{{ post.title.rendered }}</a>
+        </h3>
+        <div class="meta">
+          <p>Von:</p>
+          <p class="bold purple">gittr</p>
+          <p class="bold">|</p>
+          <p class="bold purple">Nov: 18, 2021</p>
+          <p class="bold">|</p>
+          <p class="bold purple">Amazon FBA</p>
+        </div>
+        <p class="excerpt" v-html="truncatedText"></p>
       </div>
-      <a :href="`/blog/${post.slug}`" class="readmore">Read more ⟶</a>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -31,6 +30,16 @@
 export default {
   props: {
     post: Object
+  },
+  computed: {
+    truncatedText() {
+      const parsedExcerpt = new DOMParser().parseFromString(
+        this.post.excerpt.rendered,
+        'text/html'
+      );
+      const excerptText = parsedExcerpt.body.innerText.trim();
+      return excerptText.slice(0, 200).concat('…');
+    }
   }
 };
 </script>
@@ -40,10 +49,10 @@ export default {
   background-color: var(--clr-white-100);
   display: flex;
   flex-direction: column;
-  width: clamp(22rem, calc(25rem + 2vw), 25rem);
-  height: clamp(30rem, calc(30rem + 2vw), 35rem);
+  width: clamp(22rem, calc(22rem + 2vw), 25rem);
+  height: clamp(28rem, calc(28rem + 2vw), 35rem);
   overflow: hidden;
-  box-shadow: 0 0.1rem 1.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 1em;
 
   img {
@@ -87,25 +96,6 @@ export default {
         }
       }
     }
-
-    .container {
-      // height: clamp(8rem, calc(8rem + 2vw), 8rem);
-      // width: 100%;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
-      // white-space: nowrap;
-    }
-
-    .excerpt {
-      // white-space: nowrap;
-      white-space: nowrap;
-      height: clamp(8rem, calc(8rem + 2vw), 8rem);
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      border: 1px solid #000000;
-    }
-
     p {
       font-weight: 300;
       font-size: 16px;

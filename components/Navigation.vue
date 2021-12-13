@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <NuxtLink to="/">Unternehmensbewertung</NuxtLink>
+    <NuxtLink to="/">Amazon FBA Rechner</NuxtLink>
     <NuxtLink to="/blog">Blog</NuxtLink>
     <NuxtLink to="/blog">DEU</NuxtLink>
   </div>
@@ -19,7 +19,7 @@ export default {};
   margin-right: 2em;
 
   a:not(:last-of-type) {
-    margin-right: 0.4em;
+    margin-right: 0.8em;
   }
 }
 

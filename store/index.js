@@ -2,38 +2,63 @@ import axios from 'axios';
 import { baseURL } from '~/helper/url';
 
 export const state = () => ({
-  posts: []
+  posts: [],
+  categories: []
 });
 
 export const getters = {
   getPosts: (state) => {
     return state.posts;
+  },
+  getCategories: (state) => {
+    return state.categories;
   }
 };
 
 export const mutations = {
   SET_POSTS: (state, posts) => {
     state.posts = posts;
+  },
+  SET_CATEGORIES: (state, categories) => {
+    state.categories = categories;
   }
 };
 
 export const actions = {
-  async fetchPosts({ state, commit }) {
-    if (state.posts.length) return;
+  async fetchPosts({ commit }) {
     try {
-      let posts = await axios.get(baseURL).then((res) => res.data);
+      let posts = await axios.get(`${baseURL}/posts`).then((res) => res.data);
       posts = posts
         .filter((el) => el.status === 'publish')
-        .map(({ id, slug, title, excerpt, date, tags, content }) => ({
-          id,
-          slug,
-          title,
-          excerpt,
-          date,
-          tags,
-          content
-        }));
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, categories }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            categories
+          })
+        );
       commit('SET_POSTS', posts);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  async fetchCategories({ commit }) {
+    try {
+      let categories = await axios
+        .get(`${baseURL}/categories`)
+        .then((res) => res.data);
+      categories = categories
+        .filter((c) => c.id != 1)
+        .map(({ id, name }) => ({
+          id,
+          name
+        }));
+      commit('SET_CATEGORIES', categories);
     } catch (err) {
       console.log(err);
     }
