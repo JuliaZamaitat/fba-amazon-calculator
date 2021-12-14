@@ -6,7 +6,7 @@
         <div v-for="category in categories" :key="category.id" class="category">
           <Category
             :category="category"
-            @selected="filterPosts($event, category)"
+            @selected="changeSelectedCategories($event, category)"
           />
         </div>
       </div>
@@ -14,6 +14,19 @@
         <div v-for="post in shownPosts" :key="post.id" class="post">
           <Post :post="post" />
         </div>
+      </div>
+      <div>
+        <paginate
+          :page-count="pageCount"
+          :prev-text="''"
+          :next-text="''"
+          :click-handler="updateShownPosts"
+          :container-class="'pagination'"
+          :page-class="'page-item'"
+          :page-link-class="'page-link-item'"
+        >
+          >
+        </paginate>
       </div>
 
       <div class="newsletter">
@@ -31,7 +44,10 @@ export default {
       categories: [],
       posts: [],
       selectedCatgeories: [],
-      shownPosts: []
+      shownPosts: [],
+      pageCount: 1,
+      pageNum: 1,
+      numberOfPostsOnPage: 3
     };
   },
   async created() {
@@ -41,6 +57,7 @@ export default {
     this.categories = getters.getCategories;
     this.posts = getters.getPosts;
     this.shownPosts = Array.from(this.posts);
+    this.updateShownPosts(this.pageNum);
   },
   mounted() {
     document.querySelector('body').style.backgroundColor =
@@ -49,7 +66,7 @@ export default {
       'var(--clr-purple-100)';
   },
   methods: {
-    filterPosts(event, category) {
+    changeSelectedCategories(event, category) {
       if (event == true && this.selectedCatgeories.indexOf(category) == -1) {
         this.selectedCatgeories.push(category);
       } else {
@@ -58,29 +75,49 @@ export default {
           1
         );
       }
-    }
-  },
-  watch: {
-    selectedCatgeories() {
+      this.filterPosts();
+    },
+    filterPosts() {
       if (this.selectedCatgeories.length == 0) {
         this.shownPosts = Array.from(this.posts);
-        return;
-      }
-      this.shownPosts = [];
-      var copiedPosts = Array.from(this.posts);
-      for (const post in copiedPosts) {
-        var inside = false;
-        for (const category in copiedPosts[post].categories) {
-          for (const sc in this.selectedCatgeories) {
-            if (
-              this.selectedCatgeories[sc].id ==
-              copiedPosts[post].categories[category]
-            )
-              inside = true;
+        this.calculateShownPostsBasedOnPageNumber();
+        this.calculatePageCount(this.posts);
+      } else {
+        this.shownPosts = [];
+        var copiedPosts = Array.from(this.posts);
+        for (const post in copiedPosts) {
+          var inside = false;
+          for (const category in copiedPosts[post].categories) {
+            for (const sc in this.selectedCatgeories) {
+              if (
+                this.selectedCatgeories[sc].id ==
+                copiedPosts[post].categories[category]
+              )
+                inside = true;
+            }
           }
+          if (inside == true) this.shownPosts.push(copiedPosts[post]);
+          this.calculatePageCount(this.shownPosts);
         }
-        if (inside == true) this.shownPosts.push(copiedPosts[post]);
+        this.calculateShownPostsBasedOnPageNumber();
       }
+    },
+    updateShownPosts(pageNum) {
+      this.pageNum = pageNum;
+      this.filterPosts();
+    },
+    calculateShownPostsBasedOnPageNumber() {
+      let r = this.pageNum - 1;
+      let startIndex = r * this.numberOfPostsOnPage;
+      if (this.shownPosts.length > this.numberOfPostsOnPage) {
+        this.shownPosts = this.shownPosts.splice(
+          startIndex,
+          this.numberOfPostsOnPage
+        );
+      }
+    },
+    calculatePageCount(posts) {
+      this.pageCount = posts.length / this.numberOfPostsOnPage;
     }
   }
 };
@@ -131,5 +168,34 @@ export default {
   flex-wrap: wrap;
   margin-block: 2rem;
   gap: 1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+
+  ::v-deep li {
+    color: var(--clr-white-100);
+  }
+  ::v-deep li:not(:first-of-type, :last-of-type) {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ad00ff;
+    box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    font-weight: var(--fw-bold);
+
+    &:hover {
+      color: #44364a;
+    }
+    &.active {
+      color: #44364a;
+    }
+  }
 }
 </style>
