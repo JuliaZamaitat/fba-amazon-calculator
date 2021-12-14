@@ -47,7 +47,7 @@ export default {
       shownPosts: [],
       pageCount: 1,
       pageNum: 1,
-      numberOfPostsOnPage: 3
+      numberOfPostsOnPage: 6
     };
   },
   async created() {
