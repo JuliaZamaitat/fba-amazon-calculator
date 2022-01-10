@@ -1,37 +1,141 @@
 <template>
   <div>
-    <h1>Heading 1</h1>
-    <p>Lorem Ipsum</p>
-    <p class="blog-text">
-      Wer sich mit einer eigenen Marke und einer guten Produktstrategie bei
-      Amazon auf FBA Basis (Fulfilment by Amazon) ein gewinnbringendes Geschäft
-      aufgebaut hat, steht neben diesem erfreulichen Aspekt manchmal auch vor
-      ganz neuen Hürden, die es zu überwinden gilt. Mit steigender
-      Unternehmensgröße tauchen oftmals Herausforderungen wie Sprachbarrieren
-      auf, die aufgrund des globalen Marktes entstehen, mangelndes Steuerwissen
-      kann im Worst Case zu rechtlichen Konsequenzen führen und auch
-      Compliance-Ansprüche sind zu erfüllen. Großes Kopfzerbrechen bereitet
-      vielen Amazon FBA Unternehmer/innen die Kapitalbeschaffung, die mit dem
-      Unternehmenswachstum unmittelbar einhergeht. Vielleicht ist gerade jetzt
-      der richtige Augenblick über einen Verkauf nachzudenken und die Früchte
-      des Erfolgs zu ernten. Mit der richtigen Strategie ist ein geeigneter
-      Käufer schnell gefunden. Mit der Bewertung eines Amazon FBA Business steht
-      und fällt der Verkaufserlös. Maßgeblich für die Bewertung einer Amazon FBA
-      Marke sind vor allem Faktoren wie Umsatz, Gewinn, Positionierung der
-      Marke, Wettbewerb, Marktposition, Unterscheidungskraft der Produkte sowie
-      auch die Qualität und Anzahl der Rezensionen der Kunden auf Amazon. Einen
-      nicht zu unterschätzenden Stellenwert bei der Bewertung nehmen auch die
-      Kategorien ein, auf denen das Geschäft basiert. So wird beispielsweise bei
-      dem Handel mit Produkten aus dem Gesundheits- und Wellness-Bereich in der
-      Regel eine höhere Marge erzielt als bei dem Handel mit Lebensmitteln oder
-      Elektronik.
-    </p>
-    <p></p>
+    <img class="bg-top" src="../assets/backgrounds/bg-top-blue.svg" />
+    <div class="heading">
+      <h1>Impressum</h1>
+    </div>
+    <div class="content">
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet. Meine Überschrift Lorem
+        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+        justo duo dolores et ea rebum.
+      </p>
+      <h3>Kleine Überschrift</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet.
+      </p>
+    </div>
+    <div class="footer-block">
+      <div class="text">
+        <Footer />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    document.querySelector('body').style.backgroundColor =
+      'var(--clr-white-100)';
+    document.getElementsByClassName('nav')[0].style.color =
+      'var(--clr-white-100)';
+    document.getElementsByClassName('uppercase')[0].style.color =
+      'var(--clr-purple-300)';
+    document.getElementsByClassName('footer')[0].style.opacity = '100%';
+    document.getElementsByClassName('uppercase')[0].style.fontWeight =
+      'var(--fw-medium)';
+    document.getElementsByClassName('copyright')[0].style.color =
+      'var(--clr-purple-300)';
+    document.getElementsByClassName('copyright')[0].style.fontWeight =
+      'var(--fw-300)';
+  }
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep h1,
+::v-deep h2,
+::v-deep h3,
+::v-deep h4,
+::v-deep h5 {
+  padding: 2rem 0;
+}
+::v-deep ul,
+::v-deep ol {
+  list-style: inherit;
+}
+::v-deep a {
+  text-decoration: underline;
+  color: blue;
+}
+
+.bg-top {
+  z-index: -100;
+  height: 40vw;
+}
+
+.heading {
+  h1 {
+    color: var(--clr-white-100);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-700);
+    letter-spacing: 0.1em;
+    position: absolute;
+    top: 12rem;
+    padding-left: 10rem;
+  }
+}
+
+.content {
+  max-width: 70vw;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  letter-spacing: 0.07em;
+  font-size: var(--fs-400);
+}
+
+.footer-block {
+  height: 100%;
+  background-image: url('../assets/backgrounds/bg-bottom-grey.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 40vh;
+
+  margin-top: calc(-4vw + 2px);
+
+  .text {
+    padding-top: 8rem;
+  }
+}
+</style>

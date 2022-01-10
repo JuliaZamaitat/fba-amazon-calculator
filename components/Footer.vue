@@ -1,12 +1,12 @@
 <template>
   <div class="footer">
     <ul class="uppercase">
-      <li>Blog</li>
-      <li>Kontakt</li>
-      <li>Impressum</li>
-      <li>Datenschutz</li>
+      <li><NuxtLink to="/blog">Blog</NuxtLink></li>
+      <li><NuxtLink to="/kontakt">Kontakt</NuxtLink></li>
+      <li><NuxtLink to="/impressum">Impressum</NuxtLink></li>
+      <li><NuxtLink to="/datenschutz">Datenschutz</NuxtLink></li>
     </ul>
-    <p>Copyright 2021</p>
+    <p class="copyright">Copyright 2021</p>
   </div>
 </template>
 
@@ -25,6 +25,11 @@ export default {};
   li {
     display: inline;
     margin: 0 2.5rem;
+
+    ::v-deep a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   p {
