@@ -22,6 +22,7 @@
           </li>
         </ul>
         <button
+          :disabled="errors.length != 0 || email == '' || !emailChecked"
           :class="{
             disabled: errors.length != 0 || email == '' || !emailChecked
           }"

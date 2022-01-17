@@ -6,31 +6,78 @@
     </div>
     <div class="form">
       <h2>Wir freuen uns auf Deine Nachricht.</h2>
-      <div class="email">
+      <div class="container">
+        <div class="name">
+          <div class="input">
+            <input
+              type="text"
+              placeholder="NAME"
+              v-model="name"
+              @input="markNameChecked()"
+              @blur="checkName(name)"
+            />
+          </div>
+        </div>
+        <div class="email">
+          <div class="input">
+            <input
+              type="text"
+              placeholder="EMAIL"
+              v-model="email"
+              @input="markEmailChecked()"
+              @blur="checkEmail(email)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="message">
         <div class="input">
-          <input
-            type="text"
-            placeholder="EMAIL"
-            v-model="email"
-            @input="markChecked()"
-            @blur="checkEmail(email)"
+          <textarea
+            placeholder="Deine Nachricht"
+            v-model="message"
+            @blur="checkMessage(message)"
           />
         </div>
-        <img class="icon-line" src="../assets/icons/line-purple.svg" />
-        <div class="confirm">
-          <ul>
-            <li class="error-message" v-for="error in errors" :key="error.id">
-              {{ error }}
-            </li>
-          </ul>
-          <button
-            :class="{
-              disabled: errors.length != 0 || email == '' || !emailChecked
-            }"
-          >
-            Absenden
-          </button>
-        </div>
+      </div>
+      <div class="datenschutz">
+        <input type="checkbox" @change="checkDatenschutzAgreement()" />
+        <label
+          >Einwilligung zur
+          <NuxtLink to="/datenschutz">Datenschutzerklärung</NuxtLink></label
+        >
+      </div>
+
+      <div class="confirm">
+        <ul>
+          <li class="error-message" v-for="error in errors" :key="error.id">
+            {{ error }}
+          </li>
+        </ul>
+        <button
+          :disabled="
+            errors.length != 0 ||
+            email == '' ||
+            !emailChecked ||
+            name == '' ||
+            !nameChecked ||
+            message == '' ||
+            !messageChecked ||
+            !datenschutzChecked
+          "
+          :class="{
+            disabled:
+              errors.length != 0 ||
+              email == '' ||
+              !emailChecked ||
+              name == '' ||
+              !nameChecked ||
+              message == '' ||
+              !messageChecked ||
+              !datenschutzChecked
+          }"
+        >
+          Absenden
+        </button>
       </div>
     </div>
 
@@ -47,13 +94,24 @@ export default {
   data() {
     return {
       email: '',
+      name: '',
+      message: '',
       errors: [],
-      emailChecked: false
+      emailChecked: false,
+      nameChecked: false,
+      messageChecked: false,
+      datenschutzChecked: false
     };
   },
   methods: {
-    markChecked() {
+    markEmailChecked() {
       this.emailChecked = false;
+    },
+    markNameChecked() {
+      this.nameChecked = false;
+    },
+    markMessageChecked() {
+      this.messageChecked = false;
     },
     checkEmail(email) {
       this.errors = [];
@@ -64,6 +122,23 @@ export default {
       } else if (email != '') {
         this.errors.push('Ungültige Email');
       }
+    },
+    checkName(name) {
+      this.errors = [];
+      this.nameChecked = true;
+      if (name == '') {
+        this.errors.push('Bitte trage einen Namen ein');
+      }
+    },
+    checkMessage(message) {
+      this.errors = [];
+      this.messageChecked = true;
+      if (message.length < 20) {
+        this.errors.push('Bitte schreibe eine längere Nachricht');
+      }
+    },
+    checkDatenschutzAgreement() {
+      this.datenschutzChecked = !this.datenschutzChecked;
     }
   },
   mounted() {
@@ -85,36 +160,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.email {
-  // background-color: red;
-  input {
-    color: black;
-    &::placeholder {
-      color: black;
-      font-weight: var(--fw-bold);
-    }
-  }
-  button {
-    font-weight: var(--fw-bold);
-    border: 2px solid var(--clr-purple-100);
-  }
-}
-::v-deep h1,
-::v-deep h2,
-::v-deep h3,
-::v-deep h4,
-::v-deep h5 {
-  padding: 2rem 0;
-}
-::v-deep ul,
-::v-deep ol {
-  list-style: inherit;
-}
-::v-deep a {
-  text-decoration: underline;
-  color: blue;
-}
-
 .bg-top {
   z-index: -100;
   height: 40vw;
@@ -131,16 +176,88 @@ export default {
     padding-left: 10rem;
   }
 }
+.email,
+.name,
+.message {
+  input {
+    cursor: text;
+    color: black;
+    width: 100%;
+
+    &::placeholder {
+      color: black;
+      font-weight: var(--fw-bold);
+    }
+  }
+}
+.name,
+.email {
+  width: 100%;
+  border-bottom: 2px solid var(--clr-purple-100);
+}
+
+.name {
+  margin-right: 4rem;
+}
+.message {
+  margin-top: 2rem;
+
+  textarea {
+    padding: 1rem;
+    border: 2px solid var(--clr-purple-100);
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  button {
+    margin-top: 0.5rem;
+    font-weight: var(--fw-bold);
+    border: 2px solid var(--clr-purple-100);
+    &:hover {
+      background-color: var(--clr-purple-100);
+      color: var(--clr-white-100);
+    }
+    &.disabled {
+      cursor: auto;
+      border: 2px solid rgb(144, 144, 144);
+      color: rgb(144, 144, 144);
+      &:hover {
+        background-color: transparent;
+        color: rgb(144, 144, 144);
+      }
+    }
+  }
+}
 
 .form {
   margin: 0 auto;
-  width: 80vw;
+  width: 70vw;
+  margin-bottom: 7rem;
+  margin-top: 3rem;
+
   h2 {
-    // padding-left: 10rem;
     text-align: left;
   }
 
-  margin-bottom: 5rem;
+  .container {
+    display: flex;
+    margin-top: 2.8rem;
+  }
+}
+
+.datenschutz {
+  margin-top: 0.5rem;
+  label {
+    font-weight: var(--fw-thin);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
 }
 
 .footer-block {
@@ -150,11 +267,25 @@ export default {
   background-size: cover;
   background-position: center;
   height: 40vh;
-
   margin-top: calc(-4vw + 2px);
-
   .text {
     padding-top: 8rem;
   }
+}
+
+::v-deep h1,
+::v-deep h2,
+::v-deep h3,
+::v-deep h4,
+::v-deep h5 {
+  padding: 2rem 0;
+}
+::v-deep ul,
+::v-deep ol {
+  list-style: inherit;
+}
+::v-deep a {
+  text-decoration: underline;
+  color: blue;
 }
 </style>
