@@ -65,6 +65,7 @@ export default {
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
   },
+
   methods: {
     changeSelectedCategories(event, category) {
       if (event == true && this.selectedCatgeories.indexOf(category) == -1) {
@@ -127,6 +128,10 @@ export default {
 .content {
   margin: 3em 4em 0;
 
+  @media (max-width: 35em) {
+    margin: 3em 2em 0;
+  }
+
   h1 {
     color: var(--clr-white-100);
     font-size: var(--fs-800);
@@ -135,14 +140,7 @@ export default {
   .posts {
     display: flex;
     flex-wrap: wrap;
-    // min-height: clamp(
-    //   59rem,
-    //   calc(59rem + 7vw),
-    //   73rem
-    // ); //calculated from height of cards + 3 margin-block from flexbox
-
     justify-content: center;
-    margin-block: 3rem;
     gap: 2rem;
     margin-top: 6rem;
   }
@@ -152,14 +150,27 @@ export default {
     margin: 0 auto;
     margin-top: 10rem;
     margin-bottom: 12rem;
+    @media (max-width: 55em) {
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+    }
   }
 }
 
 .background-image {
   background-image: url('../../assets/backgrounds/bg-bottom-ergebnis.svg');
+
+  // height: 2000px;
   background-repeat: no-repeat;
+
+  // background-size: cover;
+
   background-size: cover;
-  background-position: 0px center;
+  background-position: center top;
+
+  @media (max-width: 1500px) {
+    // background-image: url('../../assets/backgrounds/bg-bottom-ergebnis_middle.svg');
+  }
 }
 
 .categories {
@@ -168,6 +179,10 @@ export default {
   flex-wrap: wrap;
   margin-block: 2rem;
   gap: 1rem;
+  @media (max-width: 55em) {
+    width: 80vw;
+  }
+  z-index: 500;
 }
 
 .pagination {

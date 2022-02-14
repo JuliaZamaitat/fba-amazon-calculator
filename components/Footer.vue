@@ -1,10 +1,12 @@
 <template>
   <div class="footer">
     <ul class="uppercase">
-      <li><NuxtLink to="/blog">Blog</NuxtLink></li>
-      <li><NuxtLink to="/kontakt">Kontakt</NuxtLink></li>
-      <li><NuxtLink to="/impressum">Impressum</NuxtLink></li>
-      <li><NuxtLink to="/datenschutz">Datenschutz</NuxtLink></li>
+      <li name="Blog"><NuxtLink to="/blog">Blog</NuxtLink></li>
+      <li name="Kontakt"><NuxtLink to="/kontakt">Kontakt</NuxtLink></li>
+      <li name="Impressum"><NuxtLink to="/impressum">Impressum</NuxtLink></li>
+      <li name="Datenschutz">
+        <NuxtLink to="/datenschutz">Datenschutz</NuxtLink>
+      </li>
     </ul>
     <p class="copyright">Copyright 2021</p>
   </div>
@@ -22,13 +24,40 @@ export default {};
   opacity: 70%;
   font-weight: var(--fw-thin);
 
+  .uppercase {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+
+    @media (max-width: 55em) {
+      flex-direction: column;
+    }
+  }
+
   li {
-    display: inline;
     margin: 0 2.5rem;
 
     ::v-deep a {
       text-decoration: none;
       color: inherit;
+    }
+
+    &::after {
+      display: block;
+      content: attr(name);
+      font-weight: var(--fw-medium);
+      height: 1px;
+      color: transparent;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    &:hover {
+      font-weight: var(--fw-medium);
+    }
+
+    @media (max-width: 55em) {
+      margin-top: 1rem;
     }
   }
 

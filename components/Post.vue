@@ -49,7 +49,7 @@ export default {
   background-color: var(--clr-white-100);
   display: flex;
   flex-direction: column;
-  width: clamp(22rem, calc(22rem + 2vw), 25rem);
+  width: clamp(17rem, calc(17rem + 7vw), 25rem);
   height: clamp(28rem, calc(28rem + 2vw), 35rem);
   overflow: hidden;
   box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
@@ -98,7 +98,7 @@ export default {
     }
     p {
       font-weight: 300;
-      font-size: 16px;
+      font-size: var(--fs-300);
       line-height: 20px;
       letter-spacing: 0.1em;
     }

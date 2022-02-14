@@ -1,8 +1,16 @@
 $type-scale: (
   small: (
-    300: 0.8rem,
+    200: 0.6rem,
+    300: 0.8rem, //12.8px
+    400: 1rem, 
+    500: 1rem, //16px
+    600: 1.25rem, //20px
+    700:  1.25rem, //20px
+    800: 1.5rem, //24px;
+    900: 1.875rem, 
   ),
   large: (
+    200: 1rem, //16px
     300: 1rem, //16px
     400: 1.125rem, //18px
     500: 1.25rem, //20px

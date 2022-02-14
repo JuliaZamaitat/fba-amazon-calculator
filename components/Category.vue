@@ -34,6 +34,7 @@ export default {
 button {
   font-family: 'Montserrat', sans-serif;
   color: var(--clr-white-100);
+  font-size: var(--fs-200);
   width: auto;
   height: auto;
   padding: 0.5rem 0.6rem;
@@ -46,6 +47,10 @@ button {
   &.selected {
     background-color: white;
     color: var(--clr-orange-100);
+  }
+
+  @media (max-width: 38em) {
+    font-weight: bold;
   }
 }
 </style>
