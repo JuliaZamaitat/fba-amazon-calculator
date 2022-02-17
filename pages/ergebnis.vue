@@ -47,20 +47,24 @@
     <div class="blog">
       <h2 class="uppercase">Unser Blog</h2>
 
-      <div class="blog blog-posts">
+      <div class="blog blog-posts desktop">
+        <div v-for="post in posts" :key="post.id">
+          <Post :post="post" />
+        </div>
+      </div>
+
+      <div class="blog blog-posts mobile">
         <Swiper :options="swiperOptions">
           <SwiperSlide v-for="post in posts" :key="post.id">
             <Post :post="post" />
           </SwiperSlide>
           <div class="swiper-pagination" slot="pagination" />
         </Swiper>
-        <button>
-          <NuxtLink class="link" to="/blog" v-if="this.$route.path != '/blog'"
-            >Mehr Beiträge</NuxtLink
-          >
-        </button>
       </div>
     </div>
+    <button class="more">
+      <NuxtLink class="link" to="/blog">Mehr Beiträge</NuxtLink>
+    </button>
 
     <div class="newsletter">
       <Newsletter />
@@ -254,17 +258,18 @@ p {
     justify-content: center;
     margin-block: 2rem;
     gap: 2rem;
+  }
 
-    button {
+  .desktop {
+    @media (max-width: 55em) {
       display: none;
-      @media (max-width: 55em) {
-        display: block;
-        width: 13em;
-        &:hover {
-          background-color: var(--clr-white-100);
-          color: var(--clr-purple-100);
-        }
-      }
+    }
+  }
+
+  .mobile {
+    display: none;
+    @media (max-width: 55em) {
+      display: block;
     }
   }
 
@@ -288,6 +293,18 @@ p {
     height: 0.375rem;
     background: #ffffff;
     border-radius: 6.25rem;
+  }
+}
+.more {
+  margin: 2em auto;
+  display: block;
+  width: 15em;
+  &:hover {
+    background-color: var(--clr-white-100);
+    color: var(--clr-purple-100);
+  }
+  @media (max-width: 55em) {
+    width: 13em;
   }
 }
 
