@@ -18,6 +18,8 @@
     "core-js": "^3.19.3",
     "eslint-plugin-prettier": "^4.0.0",
     "nuxt": "^2.15.7",
+    "swiper": "5.4.5",
+    "vue-awesome-swiper": "4.1.1",
     "vuejs-datepicker": "^1.6.2",
     "vuejs-paginate": "^2.1.0"
   },

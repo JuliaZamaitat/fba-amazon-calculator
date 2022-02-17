@@ -169,7 +169,7 @@
         <span v-else :class="{ 'clr-purple': step2 }">Berechnen</span>
       </button>
     </div>
-    <Disclaimer />
+    <Disclaimer class="disclaimer" />
   </div>
 </template>
 
@@ -190,6 +190,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.$route.path);
     document.querySelector('body').style.backgroundColor =
       'var(--clr-orange-100)';
     document.getElementsByClassName('nav')[0].style.color =
@@ -222,11 +223,20 @@ export default {
           'var(--clr-orange-100)';
         document.getElementsByClassName('nav')[0].style.color =
           'var(--clr-purple-100)';
+        if (this.errors.length > 0) {
+          this.netSales = '';
+          this.ebitda = '';
+          this.errors = [];
+        }
         this.step1 = true;
         this.step2 = false;
       } else if (this.step3 === true) {
         document.querySelector('body').style.backgroundColor =
           'var(--clr-purple-200)';
+        if (this.errors.length > 0) {
+          this.ownProductsPercentage = '';
+          this.errors = [];
+        }
         this.step2 = true;
         this.step3 = false;
       }
@@ -282,6 +292,10 @@ select {
   margin-left: 4em;
   max-width: 38em;
 
+  @media (max-width: 55em) {
+    margin: 4em 2em 0;
+  }
+
   p {
     font-family: 'Montserrat', sans-serif;
   }
@@ -290,6 +304,20 @@ select {
   p {
     text-align: left;
   }
+
+  //Discuss with Konstantin
+  // h2 {
+  //   @media (max-width: 55em) {
+  //     // font-size: 16px;
+  //     // line-height: 20px;
+  //   }
+  // }
+
+  // p {
+  //   @media (max-width: 55em) {
+  //     // line-height: 20px;
+  //   }
+  // }
 
   .icon-line {
     margin-top: 0.5em;
@@ -334,6 +362,9 @@ select {
       ::v-deep .vdp-datepicker__calendar {
         border: none;
         border-radius: 10px;
+        @media (max-width: 55em) {
+          width: 250px;
+        }
       }
     }
     .icon-dropdown {
@@ -370,19 +401,25 @@ select {
   right: 7em;
   max-height: 100vh;
   z-index: -10;
+
+  @media (max-width: 81em) {
+    display: none;
+  }
 }
 
 .validation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   max-width: 38.5em;
-  text-align: right;
   ul,
   li {
     display: inline;
+    flex: 0 0 100%;
   }
 
   button {
-    margin-top: 2.15em;
-    margin-right: 4em;
+    margin: 2.15em 4em 2em 0;
 
     &:hover {
       background-color: var(--clr-white-100);
@@ -439,6 +476,16 @@ select {
   .error-message {
     color: rgb(252, 0, 0);
     margin-right: 0.3em;
+
+    @media (max-width: 55em) {
+      margin-right: 1em;
+    }
+  }
+}
+
+.disclaimer {
+  @media (max-width: 55em) {
+    display: none;
   }
 }
 </style>

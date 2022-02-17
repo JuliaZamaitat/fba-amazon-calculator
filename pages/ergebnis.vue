@@ -5,10 +5,14 @@
       <img class="icon-ergebnis" src="../assets/icons/ergebnis.svg" />
       <p>Nach unseren Berechnungen ist dein Amazon FBA Business zwischen:</p>
       <p class="result-price">600.000€ - 700.000€</p>
-      <p>
+      <p class="result-desktop">
         Erhalte Tipps wie du den Wert deines
         <strong>Amazon FBA Business</strong> steigerst, sowie die detaillierte
         Auflistung darüber, wie sich dein
+        <strong>Unternehmenswert</strong> zusammensetzt!
+      </p>
+      <p class="result-mobile">
+        Erhalte die detaillierte Auflistung darüber, wie sich dein
         <strong>Unternehmenswert</strong> zusammensetzt!
       </p>
       <div class="email">
@@ -42,10 +46,19 @@
 
     <div class="blog">
       <h2 class="uppercase">Unser Blog</h2>
+
       <div class="blog blog-posts">
-        <div v-for="post in posts" :key="post.id" class="post">
-          <Post :post="post" />
-        </div>
+        <Swiper :options="swiperOptions">
+          <SwiperSlide v-for="post in posts" :key="post.id">
+            <Post :post="post" />
+          </SwiperSlide>
+          <div class="swiper-pagination" slot="pagination" />
+        </Swiper>
+        <button>
+          <NuxtLink class="link" to="/blog" v-if="this.$route.path != '/blog'"
+            >Mehr Beiträge</NuxtLink
+          >
+        </button>
       </div>
     </div>
 
@@ -63,7 +76,20 @@ export default {
     return {
       email: '',
       errors: [],
-      emailChecked: false
+      emailChecked: false,
+      swiperOptions: {
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        loop: true,
+        slidesPerView: 1,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+        }
+      }
     };
   },
   computed: {
@@ -126,8 +152,22 @@ p {
 .result-price {
   font-style: normal;
   font-weight: var(--fw-bold);
-  font-size: 50px;
+  font-size: var(--fs-800);
   margin: 0.8em 0 1em;
+}
+
+.result-desktop {
+  @media (max-width: 55em) {
+    display: none;
+  }
+}
+
+.result-mobile {
+  display: none;
+
+  @media (max-width: 55em) {
+    display: block;
+  }
 }
 
 .icon-ergebnis {
@@ -137,13 +177,21 @@ p {
   max-height: 100vh;
   width: 16em;
   z-index: -10;
+  @media (max-width: 81em) {
+    display: none;
+  }
 }
 
 .result {
-  margin-top: 2em;
+  margin-top: 3em;
   margin-left: 4em;
   max-width: 35em;
   padding-bottom: 10em;
+
+  @media (max-width: 55em) {
+    margin: 4em 1.5em 0;
+    padding-bottom: 5em;
+  }
 }
 
 .email {
@@ -161,6 +209,9 @@ p {
     input {
       flex: 1;
       margin: 0 4em 0 2em;
+      @media (max-width: 55em) {
+        margin: 0 0.5em 0;
+      }
     }
   }
 
@@ -173,6 +224,9 @@ p {
     button {
       margin-top: 2.15em;
       margin-right: 4em;
+      @media (max-width: 55em) {
+        margin-right: 0;
+      }
       &.disabled {
         cursor: auto;
         border: 2px solid rgb(144, 144, 144);
@@ -200,6 +254,40 @@ p {
     justify-content: center;
     margin-block: 2rem;
     gap: 2rem;
+
+    button {
+      display: none;
+      @media (max-width: 55em) {
+        display: block;
+        width: 13em;
+        &:hover {
+          background-color: var(--clr-white-100);
+          color: var(--clr-purple-100);
+        }
+      }
+    }
+  }
+
+  .swiper-container {
+    padding-bottom: 35px;
+  }
+  .swiper-container-horizontal > .swiper-pagination {
+    position: absolute;
+    bottom: 0;
+  }
+
+  ::v-deep .swiper-pagination-bullet {
+    width: 0.68rem;
+    height: 0.375rem;
+    background: #c4c4c4;
+    border-radius: 6.25rem;
+    opacity: 100;
+  }
+  ::v-deep .swiper-pagination-bullet-active {
+    width: 1.75rem;
+    height: 0.375rem;
+    background: #ffffff;
+    border-radius: 6.25rem;
   }
 }
 
@@ -208,6 +296,10 @@ p {
   margin: 0 auto;
   margin-top: 10rem;
   margin-bottom: 12rem;
+
+  @media (max-width: 55em) {
+    margin: 5rem 0;
+  }
 }
 
 .background-image {

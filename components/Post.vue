@@ -54,6 +54,7 @@ export default {
   overflow: hidden;
   box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 1em;
+  margin: 0 auto;
 
   img {
     max-width: 100%;

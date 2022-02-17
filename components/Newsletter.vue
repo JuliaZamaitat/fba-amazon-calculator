@@ -76,6 +76,10 @@ h2 {
 }
 
 .newsletter {
+  @media (max-width: 55em) {
+    margin: 0 2em !important;
+  }
+
   .email {
     margin: 0 auto !important;
     display: flex;
@@ -92,6 +96,9 @@ h2 {
         display: inline;
         flex: 1;
         margin: 0 4em 0 2em;
+        @media (max-width: 55em) {
+          margin: 0 0.5em 0;
+        }
       }
 
       p {

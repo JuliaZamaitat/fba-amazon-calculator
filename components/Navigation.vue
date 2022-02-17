@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav">
     <div class="nav nav-desktop">
       <NuxtLink to="/">Amazon FBA Rechner</NuxtLink>
       <NuxtLink to="/blog">Blog</NuxtLink>
@@ -13,11 +13,17 @@
       <div class="mobile-navigation-container" v-if="open">
         <button class="close-btn" @click="toggleMenu">x</button>
         <div class="links">
-          <NuxtLink class="link" to="/" v-if="this.$route.path != '/'"
+          <NuxtLink class="link" to="/" v-if="this.$route.path != '/quiz'"
             >Amazon FBA Rechner</NuxtLink
           >
           <NuxtLink class="link" to="/blog" v-if="this.$route.path != '/blog'"
             >Blog</NuxtLink
+          >
+          <NuxtLink
+            class="link"
+            to="/kontakt"
+            v-if="this.$route.path != '/kontakt'"
+            >Kontakt</NuxtLink
           >
         </div>
       </div>
@@ -55,13 +61,16 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+.nav {
+  position: relative;
+  width: 100vw;
+}
 .nav-desktop,
 .nav-mobile {
   font-size: var(--fs-400);
   text-align: right;
-  position: absolute;
-  top: 2.5em;
   right: 2em;
+  top: 1.5em;
 
   a:not(:last-of-type) {
     margin-right: 0.8em;
@@ -106,8 +115,8 @@ button {
     color: white;
     width: auto;
     position: fixed;
-    right: 32px;
-    margin-top: 10px;
+    right: 1.7rem;
+    margin-top: 0.4rem;
   }
   .links {
     display: flex;
@@ -119,7 +128,7 @@ button {
     .link {
       color: white !important;
       text-decoration: none;
-      margin: 30px;
+      margin: 0 0.8rem 2.5rem 0.8rem;
       font-size: 25px;
     }
   }
