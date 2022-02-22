@@ -190,7 +190,7 @@ p {
 
 .result {
   position: relative;
-  margin-top: 4em;
+  margin-top: 6em;
   margin-left: 4em;
   padding-bottom: 10em;
 

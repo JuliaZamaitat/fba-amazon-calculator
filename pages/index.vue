@@ -18,7 +18,7 @@ export default {
     document.querySelector('body').style.backgroundColor =
       'var(--clr-purple-100)';
     document.getElementsByClassName('nav')[0].style.color =
-      'var(--clr-orange-100)';
+      'var(--clr-white-100)';
   },
   methods: {
     openQuiz() {
@@ -88,8 +88,8 @@ button {
   margin-top: 2.15em;
   border-color: var(--clr-orange-100);
   &:hover {
-    background-color: white;
-    color: var(--clr-purple-100);
+    background-color: var(--clr-orange-100);
+    color: var(--clr-white-100);
   }
 }
 

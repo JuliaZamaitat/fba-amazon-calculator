@@ -2,7 +2,6 @@
   <div>
     <!-- STEP 1 -->
     <div v-show="step1">
-      <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-purple.svg" />
       <img class="icon-quiz" src="../assets/icons/icon-quiz-1.svg" />
       <transition name="slide">
         <div v-if="step1" class="questions">
@@ -38,13 +37,14 @@
           </div>
         </div>
       </transition>
+      <div class="bg-bottom purple"></div>
     </div>
     <!-- STEP 2 -->
     <div v-show="step2">
-      <img
+      <!-- <img
         class="bg-bottom"
         src="../assets/backgrounds/bg-bottom-purple-light.svg"
-      />
+      /> -->
       <img class="icon-quiz" src="../assets/icons/icon-quiz-2.svg" />
       <transition name="slide">
         <div v-if="step2" class="questions">
@@ -86,11 +86,12 @@
           </div>
         </div>
       </transition>
+      <div class="bg-bottom purple light"></div>
     </div>
 
     <!-- STEP 3 -->
     <div v-show="step3">
-      <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-orange.svg" />
+      <!-- <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-orange.svg" /> -->
       <img class="icon-quiz" src="../assets/icons/icon-quiz-3.svg" />
       <transition name="slide">
         <div v-if="step3" class="questions">
@@ -124,6 +125,7 @@
           </div>
         </div>
       </transition>
+      <div class="bg-bottom orange"></div>
     </div>
 
     <!-- WEITER -->
@@ -286,14 +288,34 @@ select {
   cursor: pointer;
 }
 
+.bg-bottom {
+  &.purple {
+    background-image: url('../assets/backgrounds/bg-bottom-purple.svg');
+    &.light {
+      background-image: url('../assets/backgrounds/bg-bottom-purple-light.svg');
+    }
+  }
+
+  &.orange {
+    background-image: url('../assets/backgrounds/bg-bottom-orange.svg');
+  }
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 80vh;
+  z-index: -100;
+  width: 100%;
+}
+
 .questions {
   text-align: right;
-  margin-top: 2em;
+  margin-top: 7em;
   margin-left: 4em;
   max-width: 38em;
 
   @media (max-width: 55em) {
-    margin: 4em 2em 0;
+    margin: 7em 2em 0;
   }
 
   p {
@@ -398,7 +420,7 @@ select {
 .icon-quiz {
   position: absolute;
   top: 6em;
-  right: 7em;
+  right: 5em;
   max-height: 100vh;
   z-index: -10;
 
@@ -460,10 +482,6 @@ select {
       font-weight: var(--fw-thin);
       border: 1px solid var(--clr-white-100);
       margin-right: 1.25em;
-
-      // p:hover {
-
-      // }
       &:hover {
         font-weight: var(--fw-bold);
         color: var(--clr-orange-100);

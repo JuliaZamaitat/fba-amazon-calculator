@@ -239,7 +239,6 @@ export default {
 .form {
   margin: 0 auto;
   width: 70vw;
-  margin-bottom: 7rem;
   margin-top: 3rem;
 
   @media (max-width: 55em) {
@@ -277,14 +276,18 @@ export default {
 }
 
 .footer-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   height: 100%;
-  background-image: url('../assets/backgrounds/bg-bottom-grey.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-top: calc(-4vw + 2px);
+
   .text {
-    padding-top: 8rem;
+    background-image: url('../assets/backgrounds/bg-bottom-grey.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    padding-top: 13rem;
   }
 }
 

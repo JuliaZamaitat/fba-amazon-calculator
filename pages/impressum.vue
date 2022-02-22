@@ -119,27 +119,28 @@ export default {
   max-width: 70vw;
   margin: 0 auto;
   margin-top: 2rem;
-  margin-bottom: 5rem;
   letter-spacing: 0.07em;
   font-size: var(--fs-400);
 
   @media (max-width: 55em) {
     max-width: 85vw;
     margin-top: 3rem;
-    margin-bottom: 0;
   }
 }
 
 .footer-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   height: 100%;
-  background-image: url('../assets/backgrounds/bg-bottom-grey.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-top: calc(-4vw + 2px);
 
   .text {
-    padding-top: 8rem;
+    background-image: url('../assets/backgrounds/bg-bottom-grey.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    padding-top: 13rem;
   }
 }
 </style>
