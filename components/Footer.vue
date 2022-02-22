@@ -70,6 +70,10 @@ export default {};
 
   p {
     padding: 2.5rem 0;
+
+    @media (max-width: 55em) {
+      padding: 1rem 0;
+    }
   }
 }
 </style>

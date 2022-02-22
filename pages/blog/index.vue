@@ -150,9 +150,13 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
     gap: 2rem;
     margin-top: 6rem;
 
+    .post {
+      display: flex;
+    }
     @media (max-width: 35em) {
       margin-top: 3rem;
     }
