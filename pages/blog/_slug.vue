@@ -1,14 +1,14 @@
 <template>
   <div>
-    <img class="bg-top" src="../../assets/backgrounds/bg-top-purple.svg" />
-
-    <div v-if="post">
-      <div class="heading">
-        <h1>{{ post.title.rendered }}</h1>
+    <div class="heading-container">
+      <div class="bg-top">
+        <div class="heading content" v-if="post">
+          <h1>{{ post.title.rendered }}</h1>
+        </div>
       </div>
-      <div class="content">
-        <p v-html="post.content.rendered"></p>
-      </div>
+    </div>
+    <div class="content" v-if="post">
+      <p v-html="post.content.rendered"></p>
     </div>
 
     <div class="footer-block">
@@ -75,29 +75,55 @@ export default {
 
 .bg-top {
   z-index: -100;
-  height: 40vw;
+  width: 100%;
+  min-height: 200px;
+  background-image: url('../../assets/backgrounds/bg-top-purple.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .heading {
+  @extend .content;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-right: 30px !important;
+  padding: 6rem 0;
+
+  @media (max-width: 55em) {
+    padding: 3rem 0;
+  }
+
   h1 {
     color: #ffb72c;
     font-weight: var(--fw-extra-bold);
     font-size: var(--fs-700);
+    line-height: 145%;
     letter-spacing: 0.1em;
     text-transform: none;
-    position: absolute;
-    top: 12rem;
-    padding-left: 10rem;
+    padding: 0;
   }
 }
 
 .content {
   max-width: 70vw;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 5rem;
   margin-bottom: 5rem;
   letter-spacing: 0.07em;
   font-size: var(--fs-400);
+
+  @media (max-width: 55em) {
+    max-width: 85vw;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
 }
 
 .footer-block {
@@ -106,12 +132,18 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 40vh;
-
   margin-top: calc(-4vw + 2px);
-
   .text {
     padding-top: 8rem;
+  }
+}
+
+::v-deep .link {
+  &::after {
+    font-weight: var(--fw-bold) !important;
+  }
+  &:hover {
+    font-weight: var(--fw-bold) !important;
   }
 }
 </style>

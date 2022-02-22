@@ -3,43 +3,45 @@
     <div class="result">
       <h1>Dein Ergebnis</h1>
       <img class="icon-ergebnis" src="../assets/icons/ergebnis.svg" />
-      <p>Nach unseren Berechnungen ist dein Amazon FBA Business zwischen:</p>
-      <p class="result-price">600.000€ - 700.000€</p>
-      <p class="result-desktop">
-        Erhalte Tipps wie du den Wert deines
-        <strong>Amazon FBA Business</strong> steigerst, sowie die detaillierte
-        Auflistung darüber, wie sich dein
-        <strong>Unternehmenswert</strong> zusammensetzt!
-      </p>
-      <p class="result-mobile">
-        Erhalte die detaillierte Auflistung darüber, wie sich dein
-        <strong>Unternehmenswert</strong> zusammensetzt!
-      </p>
-      <div class="email">
-        <div class="email email-input">
-          <p>DEINE EMAIL:</p>
-          <input
-            type="text"
-            placeholder="yourmail@mail.de"
-            v-model="email"
-            @input="markChecked()"
-            @blur="checkEmail(email)"
-          />
-        </div>
-        <img class="icon-line" src="../assets/icons/line.svg" />
-        <div class="confirm">
-          <ul>
-            <li class="error-message" v-for="error in errors" :key="error.id">
-              {{ error }}
-            </li>
-          </ul>
-          <button
-            :class="{
-              disabled: errors.length != 0 || email == '' || !emailChecked
-            }"
-          >
-            Absenden
-          </button>
+      <div class="result-text">
+        <p>Nach unseren Berechnungen ist dein Amazon FBA Business zwischen:</p>
+        <p class="result-price">600.000€ - 700.000€</p>
+        <p class="result-desktop">
+          Erhalte Tipps wie du den Wert deines
+          <strong>Amazon FBA Business</strong> steigerst, sowie die detaillierte
+          Auflistung darüber, wie sich dein
+          <strong>Unternehmenswert</strong> zusammensetzt!
+        </p>
+        <p class="result-mobile">
+          Erhalte die detaillierte Auflistung darüber, wie sich dein
+          <strong>Unternehmenswert</strong> zusammensetzt!
+        </p>
+        <div class="email">
+          <div class="email email-input">
+            <p>DEINE EMAIL:</p>
+            <input
+              type="text"
+              placeholder="yourmail@mail.de"
+              v-model="email"
+              @input="markChecked()"
+              @blur="checkEmail(email)"
+            />
+          </div>
+          <img class="icon-line" src="../assets/icons/line.svg" />
+          <div class="confirm">
+            <ul>
+              <li class="error-message" v-for="error in errors" :key="error.id">
+                {{ error }}
+              </li>
+            </ul>
+            <button
+              :class="{
+                disabled: errors.length != 0 || email == '' || !emailChecked
+              }"
+            >
+              Absenden
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -187,14 +189,18 @@ p {
 }
 
 .result {
-  margin-top: 3em;
+  position: relative;
+  margin-top: 4em;
   margin-left: 4em;
-  max-width: 35em;
   padding-bottom: 10em;
 
   @media (max-width: 55em) {
-    margin: 4em 1.5em 0;
+    margin: 6em 1.5em 0;
     padding-bottom: 5em;
+  }
+
+  .result-text {
+    max-width: 35em;
   }
 }
 

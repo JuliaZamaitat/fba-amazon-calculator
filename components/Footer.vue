@@ -1,10 +1,14 @@
 <template>
   <div class="footer">
     <ul class="uppercase">
-      <li name="Blog"><NuxtLink to="/blog">Blog</NuxtLink></li>
-      <li name="Kontakt"><NuxtLink to="/kontakt">Kontakt</NuxtLink></li>
-      <li name="Impressum"><NuxtLink to="/impressum">Impressum</NuxtLink></li>
-      <li name="Datenschutz">
+      <li class="link" name="Blog"><NuxtLink to="/blog">Blog</NuxtLink></li>
+      <li class="link" name="Kontakt">
+        <NuxtLink to="/kontakt">Kontakt</NuxtLink>
+      </li>
+      <li class="link" name="Impressum">
+        <NuxtLink to="/impressum">Impressum</NuxtLink>
+      </li>
+      <li class="link" name="Datenschutz">
         <NuxtLink to="/datenschutz">Datenschutz</NuxtLink>
       </li>
     </ul>
@@ -34,6 +38,9 @@ export default {};
     }
   }
 
+  ul {
+    list-style: none;
+  }
   li {
     margin: 0 2.5rem;
 

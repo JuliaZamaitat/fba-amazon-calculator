@@ -62,7 +62,8 @@ export default {
   opacity: 0;
 }
 .nav {
-  position: relative;
+  position: absolute;
+  top: 15px;
   width: 100vw;
 }
 .nav-desktop,
@@ -70,7 +71,6 @@ export default {
   font-size: var(--fs-400);
   text-align: right;
   right: 2em;
-  top: 1.5em;
 
   a:not(:last-of-type) {
     margin-right: 0.8em;

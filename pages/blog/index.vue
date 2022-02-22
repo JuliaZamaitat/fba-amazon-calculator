@@ -1,13 +1,19 @@
 <template>
   <div class="background-image">
     <div class="content">
-      <h1>Blog</h1>
-      <div class="categories">
-        <div v-for="category in categories" :key="category.id" class="category">
-          <Category
-            :category="category"
-            @selected="changeSelectedCategories($event, category)"
-          />
+      <div class="container">
+        <h1>Blog</h1>
+        <div class="categories">
+          <div
+            v-for="category in categories"
+            :key="category.id"
+            class="category"
+          >
+            <Category
+              :category="category"
+              @selected="changeSelectedCategories($event, category)"
+            />
+          </div>
         </div>
       </div>
       <div class="posts">
@@ -129,7 +135,10 @@ export default {
   margin: 3em 4em 0;
 
   @media (max-width: 35em) {
-    margin: 3em 2em 0;
+    margin: 3em 0 0;
+    .container {
+      margin: 0 2em;
+    }
   }
 
   h1 {
@@ -143,6 +152,10 @@ export default {
     justify-content: center;
     gap: 2rem;
     margin-top: 6rem;
+
+    @media (max-width: 35em) {
+      margin-top: 3rem;
+    }
   }
 
   .newsletter {

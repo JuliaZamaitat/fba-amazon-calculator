@@ -242,6 +242,12 @@ export default {
   margin-bottom: 7rem;
   margin-top: 3rem;
 
+  @media (max-width: 55em) {
+    max-width: 85vw;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+
   h2 {
     text-align: left;
   }
@@ -249,6 +255,15 @@ export default {
   .container {
     display: flex;
     margin-top: 2.8rem;
+
+    @media (max-width: 55em) {
+      flex-direction: column;
+      margin-top: 1rem;
+
+      .email {
+        margin-top: 2rem;
+      }
+    }
   }
 }
 
@@ -267,7 +282,6 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 40vh;
   margin-top: calc(-4vw + 2px);
   .text {
     padding-top: 8rem;

@@ -121,6 +121,11 @@ export default {
   margin-bottom: 5rem;
   letter-spacing: 0.07em;
   font-size: var(--fs-400);
+  @media (max-width: 55em) {
+    max-width: 85vw;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
 }
 
 .footer-block {
@@ -129,8 +134,6 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 40vh;
-
   margin-top: calc(-4vw + 2px);
 
   .text {
