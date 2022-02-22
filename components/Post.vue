@@ -38,8 +38,7 @@ export default {
         'text/html'
       );
       const excerptText = parsedExcerpt.body.innerText.trim();
-      console.log(excerptText.slice(0, 100));
-      return excerptText.slice(0, 150).concat('…');
+      return excerptText.slice(0, 130).concat('…');
     }
   }
 };
@@ -52,7 +51,6 @@ export default {
   flex-direction: column;
   width: clamp(17rem, calc(17rem + 7vw), 25rem);
   min-height: clamp(28rem, calc(28rem + 2vw), 35rem);
-  // height: auto;
   overflow: hidden;
   box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 1em;

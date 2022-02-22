@@ -50,7 +50,7 @@
       <h2 class="uppercase">Unser Blog</h2>
 
       <div class="blog blog-posts desktop">
-        <div v-for="post in posts" :key="post.id">
+        <div v-for="post in posts" :key="post.id" class="post">
           <Post :post="post" />
         </div>
       </div>
@@ -264,6 +264,10 @@ p {
     justify-content: center;
     margin-block: 2rem;
     gap: 2rem;
+
+    .post {
+      display: flex;
+    }
   }
 
   .desktop {

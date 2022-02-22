@@ -130,6 +130,7 @@ button {
       text-decoration: none;
       margin: 0 0.8rem 2.5rem 0.8rem;
       font-size: 25px;
+      text-align: center;
     }
   }
 }
