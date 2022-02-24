@@ -12,8 +12,10 @@
               <client-only>
                 <date-picker
                   :value="date"
+                  v-model="date"
                   name="uniquename"
                   inputClass="datepicker"
+                  @input="checkDuration()"
               /></client-only>
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -30,7 +32,7 @@
                 type="text"
                 placeholder="xx"
                 v-model="percentage"
-                @input="checkPercentage(percentage)"
+                @input="checkSalesVolume(percentage)"
               />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -41,10 +43,6 @@
     </div>
     <!-- STEP 2 -->
     <div v-show="step2">
-      <!-- <img
-        class="bg-bottom"
-        src="../assets/backgrounds/bg-bottom-purple-light.svg"
-      /> -->
       <img class="icon-quiz" src="../assets/icons/icon-quiz-2.svg" />
       <transition name="slide">
         <div v-if="step2" class="questions">
@@ -58,7 +56,7 @@
                 type="text"
                 placeholder="0"
                 v-model="netSales"
-                @input="checkNumber(netSales)"
+                @input="checkNetSales(netSales)"
               />
             </div>
 
@@ -79,7 +77,7 @@
                 type="text"
                 placeholder="0"
                 v-model="ebitda"
-                @input="checkNumber(ebitda)"
+                @input="checkEbitda(ebitda)"
               />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -91,7 +89,6 @@
 
     <!-- STEP 3 -->
     <div v-show="step3">
-      <!-- <img class="bg-bottom" src="../assets/backgrounds/bg-bottom-orange.svg" /> -->
       <img class="icon-quiz" src="../assets/icons/icon-quiz-3.svg" />
       <transition name="slide">
         <div v-if="step3" class="questions">
@@ -118,7 +115,7 @@
                 type="text"
                 placeholder="xx"
                 v-model="ownProductsPercentage"
-                @input="checkPercentage(ownProductsPercentage)"
+                @input="checkProportion(ownProductsPercentage)"
               />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -150,7 +147,11 @@
       <button
         @click="next()"
         :disabled="
-          errors.length != 0 ||
+          errors[0] != '' ||
+          errors[1] != '' ||
+          errors[2] != '' ||
+          errors[3] != '' ||
+          errors[4] != '' ||
           (step1 && percentage == '') ||
           (step2 && (netSales == '' || ebitda == '')) ||
           (step3 &&
@@ -158,7 +159,11 @@
         "
         :class="{
           disabled:
-            errors.length != 0 ||
+            errors[0] != '' ||
+            errors[1] != '' ||
+            errors[2] != '' ||
+            errors[3] != '' ||
+            errors[4] != '' ||
             (step1 && percentage == '') ||
             (step2 && (netSales == '' || ebitda == '')) ||
             (step3 &&
@@ -176,23 +181,26 @@
 </template>
 
 <script>
+import calculatorData from '../data/calculator/calculate.json';
+
 export default {
   data() {
     return {
-      date: new Date(),
-      errors: [],
-      percentage: '',
+      errors: ['', '', '', '', ''],
       step1: false,
       step2: false,
       step3: false,
+      date: new Date(),
+      months: 0,
+      percentage: '',
       netSales: '',
       ebitda: '',
       productCount: 'Hier auswählen',
-      ownProductsPercentage: ''
+      ownProductsPercentage: '',
+      rules: calculatorData
     };
   },
   mounted() {
-    console.log(this.$route.path);
     document.querySelector('body').style.backgroundColor =
       'var(--clr-orange-100)';
     document.getElementsByClassName('nav')[0].style.color =
@@ -214,6 +222,8 @@ export default {
         document.querySelector('body').style.backgroundColor =
           'var(--clr-purple-100)';
       } else if (this.step3 === true) {
+        const result = this.calculateResult();
+        this.$store.dispatch('saveResult', result);
         this.$router.push({
           path: '/ergebnis'
         });
@@ -225,35 +235,161 @@ export default {
           'var(--clr-orange-100)';
         document.getElementsByClassName('nav')[0].style.color =
           'var(--clr-purple-100)';
-        if (this.errors.length > 0) {
+        if (this.errors[2] != '' || this.errors[3] != '') {
           this.netSales = '';
           this.ebitda = '';
-          this.errors = [];
+          this.errors[2] = '';
+          this.errors[3] = '';
         }
         this.step1 = true;
         this.step2 = false;
       } else if (this.step3 === true) {
         document.querySelector('body').style.backgroundColor =
           'var(--clr-purple-200)';
-        if (this.errors.length > 0) {
+        if (this.errors[4] != '') {
           this.ownProductsPercentage = '';
-          this.errors = [];
+          this.errors[4] = '';
         }
         this.step2 = true;
         this.step3 = false;
       }
     },
-    checkPercentage(percentage) {
-      this.errors = [];
+    //step1
+    checkDuration() {
+      this.errors[0] = '';
+      const dateNow = new Date();
+      const months =
+        dateNow.getMonth() -
+        this.date.getMonth() +
+        12 * (dateNow.getFullYear() - this.date.getFullYear());
+      if (months < 12) {
+        this.errors[0] =
+          'Dein Unternehmen muss mind. 12 Monate alt sein für eine Bewertung';
+      } else this.months = months;
+    },
+    checkSalesVolume(percentage) {
+      this.errors[1] = '';
       if (isNaN(percentage) || percentage > 100 || percentage < 0) {
-        this.errors.push('Ungültige Prozentangabe');
+        this.errors[1] = 'Ungültige Prozentangabe';
+      } else if (this.percentage < 60) {
+        this.errors[1] = 'Das Tool eignet sich erst zu einer Berechnung ab 60%';
       }
     },
-    checkNumber(number) {
-      this.errors = [];
-      if (isNaN(number) || number < 0) {
-        this.errors.push('Ungültige Zahl');
+    //step 2
+    checkNetSales(netSales) {
+      this.errors[2] = '';
+      if (isNaN(netSales) || netSales < 0) {
+        this.errors[2] = 'Ungültige Zahl';
       }
+    },
+    checkEbitda(ebitda) {
+      this.errors[3] = '';
+      if (isNaN(ebitda) || ebitda < 0) {
+        this.errors[3] = 'Ungültige Zahl';
+      }
+    },
+    //step 3
+    checkProportion(percentage) {
+      this.errors[4] = '';
+      if (isNaN(percentage) || percentage > 100 || percentage < 0) {
+        this.errors[4] = 'Ungültige Prozentangabe';
+      }
+    },
+    calculateResult() {
+      if (!this.rules) return;
+
+      //calculating Months
+      const improved = [];
+      improved[0] = this.months;
+      improved[1] = this.percentage;
+      improved[2] = this.netSales * 12;
+      improved[3] = (this.ebitda / this.netSales) * 100;
+
+      // recount values
+      const converted = [];
+      for (let i = 0; i < improved.length; i++) {
+        converted[i] = this.fcpConvert(improved[i], this.rules[i]);
+      }
+
+      //add weights
+      const weights = [];
+      const weighted = [];
+      for (let i = 0; i < converted.length; i++) {
+        weights[i] = this.rules[i]['weight'];
+        weighted[i] = this.fcpWeight(converted[i], this.rules[i]);
+      }
+
+      //max values NOT SURE
+      const maxes = [];
+      for (let i = 0; i < this.rules.length; i++) {
+        var b = Object.values(this.rules[i].options);
+        maxes[i] = Math.max(...b);
+        //NaN for one value where we have an array within the array
+      }
+
+      // count total
+      let score = 0;
+      weighted.forEach((value) => {
+        if (!isNaN(value)) {
+          score += value;
+        }
+      });
+
+      const evaluated =
+        ((weighted[2][1] - weighted[2][0]) * score) / 10000 + weighted[2][0];
+      const minMult = (evaluated - 0.2).toPrecision(2) * 1;
+      const maxMult = (evaluated + 0.2).toPrecision(2) * 1;
+      const evalMinFull = (evaluated - 0.2) * this.ebitda * 12;
+      const evalMaxFull = (evaluated + 0.2) * this.ebitda * 12;
+      const min = this.numberWithCommas(evalMinFull.toPrecision(3) * 1);
+      const max = this.numberWithCommas(evalMaxFull.toPrecision(3) * 1);
+
+      return {
+        improved,
+        converted,
+        weights,
+        weighted,
+        maxes,
+        score,
+        minMult,
+        maxMult,
+        min,
+        max
+      };
+    },
+    fcpConvert(value, rule) {
+      if (!rule['compare'] || !rule['options']) {
+        return value;
+      }
+      let result = null;
+
+      if (rule['compare'] === 'less') {
+        const options = rule['options'];
+        for (const [k, v] of Object.entries(options)) {
+          if (!isNaN(k) && value + 0 < k) {
+            result = v;
+            break;
+          }
+        }
+        if (result === null && typeof options.higher !== 'undefined') {
+          result = options['higher'];
+        }
+      }
+      return result !== null ? result : value;
+    },
+    fcpWeight(value, rule) {
+      if (!rule['compare'] || !rule['options']) {
+        return value;
+      }
+      let result = null;
+
+      if (rule['weight']) {
+        result = value * rule['weight'];
+      }
+      return result !== null ? result : value;
+    },
+    numberWithCommas(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
   }
 };

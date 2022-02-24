@@ -3,7 +3,8 @@ import { baseURL } from '~/helper/url';
 
 export const state = () => ({
   posts: [],
-  categories: []
+  categories: [],
+  result: {}
 });
 
 export const getters = {
@@ -12,6 +13,9 @@ export const getters = {
   },
   getCategories: (state) => {
     return state.categories;
+  },
+  getResult: (state) => {
+    return state.result;
   }
 };
 
@@ -21,6 +25,9 @@ export const mutations = {
   },
   SET_CATEGORIES: (state, categories) => {
     state.categories = categories;
+  },
+  SET_RESULT: (state, result) => {
+    state.result = result;
   }
 };
 
@@ -62,5 +69,8 @@ export const actions = {
     } catch (err) {
       console.log(err);
     }
+  },
+  saveResult({ commit }, result) {
+    commit('SET_RESULT', result);
   }
 };

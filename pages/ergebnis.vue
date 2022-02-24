@@ -5,7 +5,9 @@
       <img class="icon-ergebnis" src="../assets/icons/ergebnis.svg" />
       <div class="result-text">
         <p>Nach unseren Berechnungen ist dein Amazon FBA Business zwischen:</p>
-        <p class="result-price">600.000€ - 700.000€</p>
+        <p v-if="result" class="result-price">
+          {{ result.min }}€ - {{ result.max }}€
+        </p>
         <p class="result-desktop">
           Erhalte Tipps wie du den Wert deines
           <strong>Amazon FBA Business</strong> steigerst, sowie die detaillierte
@@ -80,6 +82,7 @@
 export default {
   data() {
     return {
+      result: {},
       email: '',
       errors: [],
       emailChecked: false,
@@ -106,6 +109,8 @@ export default {
 
   async created() {
     await this.$store.dispatch('fetchPosts');
+    const { getters } = this.$store;
+    this.result = getters.getResult;
   },
   mounted() {
     document.querySelector('body').style.backgroundColor =
@@ -160,6 +165,7 @@ p {
   font-weight: var(--fw-bold);
   font-size: var(--fs-800);
   margin: 0.8em 0 1em;
+  line-height: 1;
 }
 
 .result-desktop {
@@ -200,7 +206,7 @@ p {
   }
 
   .result-text {
-    max-width: 35em;
+    max-width: 38em;
   }
 }
 
