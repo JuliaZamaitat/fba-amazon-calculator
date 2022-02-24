@@ -23,8 +23,6 @@ export default {};
     color: var(--clr-white-100);
     opacity: 80%;
     width: 80vw;
-    position: absolute;
-    bottom: 2em;
     margin-left: 6.6em;
     line-height: 15px;
     letter-spacing: 0.1em;

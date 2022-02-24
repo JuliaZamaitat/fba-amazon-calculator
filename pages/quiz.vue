@@ -98,8 +98,17 @@
               <img class="icon-dropdown" src="../assets/icons/dropdown.svg" />
               <select v-model="productCount" class="select" name="products">
                 <option selected disabled>Hier auswählen</option>
-                <option>Weniger als 10</option>
-                <option>Mehr als 10</option>
+                <option value="9">&#060; 10</option>
+                <option value="24">&#060; 25</option>
+                <option value="49">&#060; 50</option>
+                <option value="99">&#060; 100</option>
+                <option value="249">&#060; 250</option>
+                <option value="499">&#060; 500</option>
+                <option value="999">&#060; 1.000</option>
+                <option value="2499">&#060; 2.500</option>
+                <option value="4099">&#060; 5.000</option>
+                <option value="9999">&#060; 10.000</option>
+                <option value="12000">&#062; 10.000</option>
               </select>
             </div>
 
@@ -262,31 +271,26 @@ export default {
         dateNow.getMonth() -
         this.date.getMonth() +
         12 * (dateNow.getFullYear() - this.date.getFullYear());
-      if (months < 12) {
+      if (months < 12)
         this.errors[0] =
           'Dein Unternehmen muss mind. 12 Monate alt sein für eine Bewertung';
-      } else this.months = months;
+      else this.months = months;
     },
     checkSalesVolume(percentage) {
       this.errors[1] = '';
-      if (isNaN(percentage) || percentage > 100 || percentage < 0) {
+      if (isNaN(percentage) || percentage > 100 || percentage < 0)
         this.errors[1] = 'Ungültige Prozentangabe';
-      } else if (this.percentage < 60) {
+      else if (this.percentage != '' && this.percentage < 60)
         this.errors[1] = 'Das Tool eignet sich erst zu einer Berechnung ab 60%';
-      }
     },
     //step 2
     checkNetSales(netSales) {
       this.errors[2] = '';
-      if (isNaN(netSales) || netSales < 0) {
-        this.errors[2] = 'Ungültige Zahl';
-      }
+      if (isNaN(netSales) || netSales < 0) this.errors[2] = 'Ungültige Zahl';
     },
     checkEbitda(ebitda) {
       this.errors[3] = '';
-      if (isNaN(ebitda) || ebitda < 0) {
-        this.errors[3] = 'Ungültige Zahl';
-      }
+      if (isNaN(ebitda) || ebitda < 0) this.errors[3] = 'Ungültige Zahl';
     },
     //step 3
     checkProportion(percentage) {
@@ -299,16 +303,18 @@ export default {
       if (!this.rules) return;
 
       //calculating Months
-      const improved = [];
-      improved[0] = this.months;
-      improved[1] = this.percentage;
-      improved[2] = this.netSales * 12;
-      improved[3] = (this.ebitda / this.netSales) * 100;
+      const calculatedValues = [];
+      calculatedValues[0] = this.months;
+      calculatedValues[1] = this.percentage;
+      calculatedValues[2] = this.netSales * 12;
+      calculatedValues[3] = (this.ebitda / this.netSales) * 100;
+      calculatedValues[4] = this.productCount;
+      calculatedValues[5] = this.ownProductsPercentage;
 
       // recount values
       const converted = [];
-      for (let i = 0; i < improved.length; i++) {
-        converted[i] = this.fcpConvert(improved[i], this.rules[i]);
+      for (let i = 0; i < calculatedValues.length; i++) {
+        converted[i] = this.fcpConvert(calculatedValues[i], this.rules[i]);
       }
 
       //add weights
@@ -330,9 +336,7 @@ export default {
       // count total
       let score = 0;
       weighted.forEach((value) => {
-        if (!isNaN(value)) {
-          score += value;
-        }
+        if (!isNaN(value)) score += value;
       });
 
       const evaluated =
@@ -345,7 +349,7 @@ export default {
       const max = this.numberWithCommas(evalMaxFull.toPrecision(3) * 1);
 
       return {
-        improved,
+        calculatedValues,
         converted,
         weights,
         weighted,
@@ -358,34 +362,27 @@ export default {
       };
     },
     fcpConvert(value, rule) {
-      if (!rule['compare'] || !rule['options']) {
-        return value;
-      }
-      let result = null;
+      if (!rule['compare'] || !rule['options']) return value;
 
+      let result = null;
       if (rule['compare'] === 'less') {
         const options = rule['options'];
         for (const [k, v] of Object.entries(options)) {
-          if (!isNaN(k) && value + 0 < k) {
+          if (!isNaN(k) && parseInt(value) < k) {
             result = v;
             break;
           }
         }
-        if (result === null && typeof options.higher !== 'undefined') {
+        if (result === null && typeof options.higher !== 'undefined')
           result = options['higher'];
-        }
       }
       return result !== null ? result : value;
     },
     fcpWeight(value, rule) {
-      if (!rule['compare'] || !rule['options']) {
-        return value;
-      }
-      let result = null;
+      if (!rule['compare'] || !rule['options']) return value;
 
-      if (rule['weight']) {
-        result = value * rule['weight'];
-      }
+      let result = null;
+      if (rule['weight']) result = value * rule['weight'];
       return result !== null ? result : value;
     },
     numberWithCommas(number) {
@@ -572,12 +569,13 @@ select {
   max-width: 38.5em;
   ul,
   li {
-    display: inline;
+    text-align: right;
     flex: 0 0 100%;
+    margin-right: 3em;
   }
 
   button {
-    margin: 2.15em 4em 2em 0;
+    margin: 1em 4em 2em 0;
 
     &:hover {
       background-color: var(--clr-white-100);
@@ -638,6 +636,7 @@ select {
 }
 
 .disclaimer {
+  margin-top: 3em;
   @media (max-width: 55em) {
     display: none;
   }
