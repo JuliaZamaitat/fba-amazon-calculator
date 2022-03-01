@@ -38,12 +38,15 @@
           >
         </paginate>
       </div>
+    </div>
 
-      <div class="newsletter">
-        <Newsletter />
-      </div>
+    <div class="newsletter">
+      <Newsletter />
+    </div>
+    <div class="footer">
       <Footer />
     </div>
+    <div class="bg-bottom-shapes"></div>
   </div>
 </template>
 
@@ -150,10 +153,17 @@ export default {
     background-size: cover;
     background-position: bottom;
     width: 100%;
-    min-height: 600px;
+    min-height: 37.5rem;
+    @media (min-width: 87.5em) {
+      min-height: 46.875rem;
+    }
+
+    @media (min-width: 131em) {
+      min-height: 53.125rem;
+    }
 
     .heading {
-      margin: 7em 2em;
+      margin: 7em 6em;
 
       .categories {
         width: 50vw;
@@ -174,7 +184,7 @@ export default {
   margin: -14em 4em 0;
 
   @media (max-width: 35em) {
-    margin: 3em 0 0;
+    margin: -14em 0 0;
   }
 
   .posts {
@@ -192,17 +202,6 @@ export default {
       margin-top: 3rem;
     }
   }
-
-  .newsletter {
-    max-width: 70rem;
-    margin: 0 auto;
-    margin-top: 10rem;
-    margin-bottom: 12rem;
-    @media (max-width: 55em) {
-      margin-top: 5rem;
-      margin-bottom: 5rem;
-    }
-  }
 }
 
 .pagination {
@@ -217,7 +216,7 @@ export default {
     width: 3rem;
     height: 3rem;
     display: flex;
-    margin: 15px;
+    margin: 0.93rem;
     align-items: center;
     justify-content: center;
     background-color: #ad00ff;
@@ -231,6 +230,39 @@ export default {
     &.active {
       color: #44364a;
     }
+  }
+}
+
+.newsletter {
+  max-width: 70rem;
+  margin: 0 auto;
+  margin-top: 10rem;
+  margin-bottom: 12rem;
+  @media (max-width: 55em) {
+    margin-bottom: 5rem;
+  }
+}
+
+.footer {
+  margin-top: 12.5rem;
+  @media (max-width: 55em) {
+    margin-top: 9.375rem;
+  }
+}
+
+.bg-bottom-shapes {
+  background-image: url('../../assets/backgrounds/bg-bottom-purple-shapes.svg');
+  background-position: top;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 59.375rem;
+  margin-top: -59.375rem;
+  z-index: -500;
+
+  @media (min-width: 120em) {
+    min-height: 65em;
+    margin-top: -60em;
   }
 }
 </style>
