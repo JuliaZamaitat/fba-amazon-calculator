@@ -1,21 +1,25 @@
 <template>
-  <div class="background-image">
-    <div class="content">
-      <div class="container">
-        <h1>Blog</h1>
-        <div class="categories">
-          <div
-            v-for="category in categories"
-            :key="category.id"
-            class="category"
-          >
-            <Category
-              :category="category"
-              @selected="changeSelectedCategories($event, category)"
-            />
+  <div>
+    <div class="heading-container">
+      <div class="bg-top">
+        <div class="heading">
+          <h1>Blog</h1>
+          <div class="categories">
+            <div
+              v-for="category in categories"
+              :key="category.id"
+              class="category"
+            >
+              <Category
+                :category="category"
+                @selected="changeSelectedCategories($event, category)"
+              />
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="content">
       <div class="posts">
         <div v-for="post in shownPosts" :key="post.id" class="post">
           <Post :post="post" />
@@ -67,7 +71,7 @@ export default {
   },
   mounted() {
     document.querySelector('body').style.backgroundColor =
-      'var(--clr-orange-100)';
+      'var(--clr-purple-100)';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
   },
@@ -131,19 +135,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  margin: 3em 4em 0;
-
-  @media (max-width: 35em) {
-    margin: 3em 0 0;
-    .container {
-      margin: 0 2em;
-    }
-  }
-
+.heading-container {
   h1 {
     color: var(--clr-white-100);
     font-size: var(--fs-800);
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .bg-top {
+    background-image: url('../../assets/backgrounds/bg-top-orange.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    min-height: 600px;
+
+    .heading {
+      margin: 7em 2em;
+
+      .categories {
+        width: 50vw;
+        display: flex;
+        flex-wrap: wrap;
+        margin-block: 2rem;
+        gap: 1rem;
+        @media (max-width: 55em) {
+          width: 80vw;
+        }
+        z-index: 500;
+      }
+    }
+  }
+}
+
+.content {
+  margin: -14em 4em 0;
+
+  @media (max-width: 35em) {
+    margin: 3em 0 0;
   }
 
   .posts {
@@ -172,34 +203,6 @@ export default {
       margin-bottom: 5rem;
     }
   }
-}
-
-.background-image {
-  background-image: url('../../assets/backgrounds/bg-bottom-ergebnis.svg');
-
-  // height: 2000px;
-  background-repeat: no-repeat;
-
-  // background-size: cover;
-
-  background-size: cover;
-  background-position: center top;
-
-  @media (max-width: 1500px) {
-    // background-image: url('../../assets/backgrounds/bg-bottom-ergebnis_middle.svg');
-  }
-}
-
-.categories {
-  width: 50vw;
-  display: flex;
-  flex-wrap: wrap;
-  margin-block: 2rem;
-  gap: 1rem;
-  @media (max-width: 55em) {
-    width: 80vw;
-  }
-  z-index: 500;
 }
 
 .pagination {

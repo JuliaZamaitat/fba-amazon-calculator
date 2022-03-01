@@ -39,10 +39,6 @@ button {
   height: auto;
   padding: 0.5rem 0.6rem;
   font-weight: var(--fw-medium);
-  &:hover {
-    background-color: white;
-    color: var(--clr-orange-100);
-  }
 
   &.selected {
     background-color: white;

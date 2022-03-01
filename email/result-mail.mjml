@@ -1,0 +1,9 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text width="300px" background-color="red">Hi sexy!</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

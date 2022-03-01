@@ -80,7 +80,15 @@ export default {
   background-image: url('../../assets/backgrounds/bg-top-purple.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
+
+  @media (min-width: 87.5em) {
+    min-height: 450px;
+  }
+
+  @media (min-width: 131em) {
+    min-height: 550px;
+  }
 }
 
 .heading-container {

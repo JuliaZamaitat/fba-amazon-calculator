@@ -13,10 +13,13 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.4.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "axios": "^0.23.0",
     "core-js": "^3.19.3",
     "eslint-plugin-prettier": "^4.0.0",
+    "mjml": "^4.12.0",
     "nuxt": "^2.15.7",
     "swiper": "5.4.5",
     "vue-awesome-swiper": "4.1.1",

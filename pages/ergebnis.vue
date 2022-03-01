@@ -37,9 +37,24 @@
               </li>
             </ul>
             <button
+              @click="sendEmailResult()"
               :class="{
-                disabled: errors.length != 0 || email == '' || !emailChecked
+                disabled:
+                  errors.length != 0 ||
+                  email == '' ||
+                  !emailChecked ||
+                  (result &&
+                    Object.keys(result).length === 0 &&
+                    Object.getPrototypeOf(result) === Object.prototype)
               }"
+              :disabled="
+                errors.length != 0 ||
+                email == '' ||
+                !emailChecked ||
+                (result &&
+                  Object.keys(result).length === 0 &&
+                  Object.getPrototypeOf(result) === Object.prototype)
+              "
             >
               Absenden
             </button>
@@ -79,6 +94,8 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
   data() {
     return {
@@ -131,6 +148,35 @@ export default {
       } else if (email != '') {
         this.errors.push('Ungültige Email');
       }
+    },
+    sendEmailResult() {
+      if (
+        !this.email ||
+        (this.result &&
+          Object.keys(this.result).length === 0 &&
+          Object.getPrototypeOf(this.result) === Object.prototype)
+      ) {
+        console.log('missing params');
+        return;
+      }
+      const serviceID = process.env.EMAILJS_SERVICE_ID;
+      const templateID = process.env.EMAILJS_TEMPLATE_ID;
+      const userID = process.env.EMAILJS_USER_ID;
+      const templateParams = {
+        to: this.email,
+        url: "url('../assets/backgrounds/email-background.svg')", //has to be a public url
+        minVal: `${this.result.min} €`,
+        maxVal: `${this.result.max} €`,
+        redirect_to: process.env.EMAILJS_REDIRECT_TO
+      };
+      emailjs.send(serviceID, templateID, templateParams, userID).then(
+        () => {
+          console.log('sent');
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     }
   }
 };
