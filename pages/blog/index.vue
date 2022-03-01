@@ -154,7 +154,8 @@ export default {
     background-position: bottom;
     width: 100%;
     min-height: 37.5rem;
-    @media (min-width: 87.5em) {
+
+    @media (min-width: 90.5em) {
       min-height: 46.875rem;
     }
 
@@ -164,6 +165,10 @@ export default {
 
     .heading {
       margin: 7em 6em;
+      @media (max-width: 55em) {
+        width: 80vw;
+        margin: 7em 1em;
+      }
 
       .categories {
         width: 50vw;

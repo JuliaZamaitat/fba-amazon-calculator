@@ -1,9 +1,13 @@
 <template>
   <div>
-    <img class="bg-top" src="../assets/backgrounds/bg-top-purple-light.svg" />
-    <div class="heading">
-      <h1>Kontakt</h1>
+    <div class="heading-container">
+      <div class="bg-top">
+        <div class="heading">
+          <h1>Kontakt</h1>
+        </div>
+      </div>
     </div>
+
     <div class="form">
       <h2>Wir freuen uns auf Deine Nachricht.</h2>
       <div class="container">
@@ -160,22 +164,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-top {
-  z-index: -100;
-  height: 40vw;
-}
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .bg-top {
+    z-index: -100;
+    width: 100%;
+    min-height: 350px;
+    background-image: url('../assets/backgrounds/bg-top-purple-light.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
 
-.heading {
-  h1 {
-    color: var(--clr-white-100);
-    font-weight: var(--fw-bold);
-    font-size: var(--fs-700);
-    letter-spacing: 0.1em;
-    position: absolute;
-    top: 12rem;
-    padding-left: 10rem;
+    @media (min-width: 30em) {
+      min-height: 450px;
+    }
+
+    @media (min-width: 87.5em) {
+      min-height: 500px;
+    }
+
+    @media (min-width: 131em) {
+      min-height: 600px;
+    }
+  }
+  .heading {
+    h1 {
+      color: var(--clr-white-100);
+      font-weight: var(--fw-bold);
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      position: absolute;
+      top: 12rem;
+      padding-left: 7rem;
+      @media (max-width: 55em) {
+        padding-left: 3rem;
+      }
+    }
   }
 }
+
 .email,
 .name,
 .message {
