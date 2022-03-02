@@ -7,6 +7,7 @@
         </div>
       </div>
     </div>
+    <div class="placeholder" v-if="!post"></div>
     <div class="content" v-if="post">
       <p v-html="post.content.rendered"></p>
     </div>
@@ -38,6 +39,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       slug: this.$route.params.slug
     };
   },
@@ -50,7 +52,9 @@ export default {
     }
   },
   async created() {
+    this.loading = true;
     await this.$store.dispatch('fetchPosts');
+    this.loading = false;
   }
 };
 </script>
@@ -117,6 +121,9 @@ export default {
   }
 }
 
+.placeholder {
+  min-height: 25rem;
+}
 .content {
   max-width: 70vw;
   margin: 0 auto;

@@ -29,10 +29,10 @@
             <div>
               <p>%</p>
               <input
+                @input="checkSalesVolume(percentage)"
                 type="text"
                 placeholder="xx"
                 v-model="percentage"
-                @input="checkSalesVolume(percentage)"
               />
             </div>
             <img class="icon-line" src="../assets/icons/line.svg" />
@@ -162,6 +162,7 @@
           errors[3] != '' ||
           errors[4] != '' ||
           (step1 && percentage == '') ||
+          !checkedSalesVolume ||
           (step2 && (netSales == '' || ebitda == '')) ||
           (step3 &&
             (productCount == 'Hier auswählen' || ownProductsPercentage == ''))
@@ -174,6 +175,7 @@
             errors[3] != '' ||
             errors[4] != '' ||
             (step1 && percentage == '') ||
+            !checkedSalesVolume ||
             (step2 && (netSales == '' || ebitda == '')) ||
             (step3 &&
               (productCount == 'Hier auswählen' || ownProductsPercentage == ''))
@@ -190,6 +192,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import calculatorData from '../data/calculator/calculate.json';
 
 export default {
@@ -202,6 +205,7 @@ export default {
       date: new Date(),
       months: 0,
       percentage: '',
+      checkedSalesVolume: false,
       netSales: '',
       ebitda: '',
       productCount: 'Hier auswählen',
@@ -276,13 +280,22 @@ export default {
           'Dein Unternehmen muss mind. 12 Monate alt sein für eine Bewertung';
       else this.months = months;
     },
-    checkSalesVolume(percentage) {
-      this.errors[1] = '';
+    async checkSalesVolume(percentage) {
+      this.checkedSalesVolume = false;
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      Vue.set(this.errors, 1, '');
+
       if (isNaN(percentage) || percentage > 100 || percentage < 0)
-        this.errors[1] = 'Ungültige Prozentangabe';
+        Vue.set(this.errors, 1, 'Ungültige Prozentangabe');
       else if (this.percentage != '' && this.percentage < 60)
-        this.errors[1] = 'Das Tool eignet sich erst zu einer Berechnung ab 60%';
+        Vue.set(
+          this.errors,
+          1,
+          'Das Tool eignet sich erst zu einer Berechnung ab 60%'
+        );
+      this.checkedSalesVolume = true;
     },
+
     //step 2
     checkNetSales(netSales) {
       this.errors[2] = '';

@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="content">
+    <div class="content" v-if="!loading">
       <div class="posts">
         <div v-for="post in shownPosts" :key="post.id" class="post">
           <Post :post="post" />
@@ -54,6 +54,7 @@
 export default {
   data() {
     return {
+      loading: true,
       categories: [],
       posts: [],
       selectedCatgeories: [],
@@ -63,7 +64,9 @@ export default {
       numberOfPostsOnPage: 6
     };
   },
+
   async created() {
+    this.loading = true;
     await this.$store.dispatch('fetchPosts');
     await this.$store.dispatch('fetchCategories');
     const { getters } = this.$store;
@@ -71,6 +74,7 @@ export default {
     this.posts = getters.getPosts;
     this.shownPosts = Array.from(this.posts);
     this.updateShownPosts(this.pageNum);
+    this.loading = false;
   },
   mounted() {
     document.querySelector('body').style.backgroundColor =
