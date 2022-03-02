@@ -29,7 +29,6 @@
               @blur="checkEmail(email)"
             />
           </div>
-          <img class="icon-line" src="../assets/icons/line.svg" />
           <div class="confirm">
             <ul>
               <li class="error-message" v-for="error in errors" :key="error.id">
@@ -270,6 +269,12 @@ p {
     align-items: flex-start;
     margin-top: 2.5em;
     max-width: 100%;
+    border-bottom: 2px solid white;
+    margin-right: 60px;
+
+    @media (max-width: 55em) {
+      margin-right: 0;
+    }
 
     p {
       display: inline;

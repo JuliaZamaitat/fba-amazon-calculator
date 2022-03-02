@@ -1,137 +1,150 @@
 <template>
   <div>
     <!-- STEP 1 -->
-    <div v-show="step1">
-      <img class="icon-quiz" src="../assets/icons/icon-quiz-1.svg" />
-      <transition name="slide">
-        <div v-if="step1" class="questions">
-          <div class="section-1">
-            <h2>Seit wann verkaufst du aktiv auf Amazon?</h2>
-            <div class="calendar">
-              <img class="icon-calendar" src="../assets/icons/calendar.svg" />
-              <client-only>
-                <date-picker
-                  :value="date"
-                  v-model="date"
-                  name="uniquename"
-                  inputClass="datepicker"
-                  @input="checkDuration()"
-              /></client-only>
+    <div class="heading-container">
+      <div
+        class="bg-top"
+        :class="{ orange: step1, purple: step2, 'purple light': step3 }"
+      >
+        <div v-show="step1">
+          <img class="icon-quiz" src="../assets/icons/icon-quiz-1.svg" />
+          <transition name="slide">
+            <div v-if="step1" class="questions">
+              <div class="section-1">
+                <h2>Seit wann verkaufst du aktiv auf Amazon?</h2>
+                <div class="calendar">
+                  <img
+                    class="icon-calendar"
+                    src="../assets/icons/calendar.svg"
+                  />
+                  <client-only>
+                    <date-picker
+                      :value="date"
+                      v-model="date"
+                      name="uniquename"
+                      inputClass="datepicker"
+                      @input="checkDuration()"
+                  /></client-only>
+                </div>
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
+              <div class="section-2">
+                <h2>Anteil von Amazon Umsatz in Prozent von Gesamtumsatz</h2>
+                <p>
+                  Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
+                  Gesamtumsatz.
+                </p>
+                <div>
+                  <p>%</p>
+                  <input
+                    @input="checkSalesVolume(percentage)"
+                    type="text"
+                    placeholder="xx"
+                    v-model="percentage"
+                  />
+                </div>
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
             </div>
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
-          <div class="section-2">
-            <h2>Anteil von Amazon Umsatz in Prozent von Gesamtumsatz</h2>
-            <p>
-              Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
-              Gesamtumsatz.
-            </p>
-            <div>
-              <p>%</p>
-              <input
-                @input="checkSalesVolume(percentage)"
-                type="text"
-                placeholder="xx"
-                v-model="percentage"
-              />
-            </div>
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
+          </transition>
         </div>
-      </transition>
-      <div class="bg-bottom purple"></div>
-    </div>
-    <!-- STEP 2 -->
-    <div v-show="step2">
-      <img class="icon-quiz" src="../assets/icons/icon-quiz-2.svg" />
-      <transition name="slide">
-        <div v-if="step2" class="questions">
-          <div class="section-1">
-            <h2>
-              Wie hoch ist dein durchschnittlicher monatlicher Nettoumsatz?
-            </h2>
-            <div>
-              <p>€</p>
-              <input
-                type="text"
-                placeholder="0"
-                v-model="netSales"
-                @input="checkNetSales(netSales)"
-              />
-            </div>
 
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
-          <div class="section-2">
-            <h2>
-              Wie hoch ist dein durchschnittliches monatliches Betriebsergebnis
-              (EBITDA)?
-            </h2>
-            <p>
-              Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
-              Gesamtumsatz.
-            </p>
-            <div>
-              <p>€</p>
-              <input
-                type="text"
-                placeholder="0"
-                v-model="ebitda"
-                @input="checkEbitda(ebitda)"
-              />
+        <!-- STEP 2 -->
+        <div v-show="step2">
+          <img class="icon-quiz" src="../assets/icons/icon-quiz-2.svg" />
+          <transition name="slide">
+            <div v-if="step2" class="questions">
+              <div class="section-1">
+                <h2>
+                  Wie hoch ist dein durchschnittlicher monatlicher Nettoumsatz?
+                </h2>
+                <div>
+                  <p>€</p>
+                  <input
+                    type="text"
+                    placeholder="0"
+                    v-model="netSales"
+                    @input="checkNetSales(netSales)"
+                  />
+                </div>
+
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
+              <div class="section-2">
+                <h2>
+                  Wie hoch ist dein durchschnittliches monatliches
+                  Betriebsergebnis (EBITDA)?
+                </h2>
+                <p>
+                  Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
+                  Gesamtumsatz.
+                </p>
+                <div>
+                  <p>€</p>
+                  <input
+                    type="text"
+                    placeholder="0"
+                    v-model="ebitda"
+                    @input="checkEbitda(ebitda)"
+                  />
+                </div>
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
             </div>
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
+          </transition>
         </div>
-      </transition>
-      <div class="bg-bottom purple light"></div>
-    </div>
 
-    <!-- STEP 3 -->
-    <div v-show="step3">
-      <img class="icon-quiz" src="../assets/icons/icon-quiz-3.svg" />
-      <transition name="slide">
-        <div v-if="step3" class="questions">
-          <div class="section-1">
-            <h2>Anzahl der bei Amazon gelisteten Produkte (ohne Varianten)</h2>
-            <div>
-              <img class="icon-dropdown" src="../assets/icons/dropdown.svg" />
-              <select v-model="productCount" class="select" name="products">
-                <option selected disabled>Hier auswählen</option>
-                <option value="9">&#060; 10</option>
-                <option value="24">&#060; 25</option>
-                <option value="49">&#060; 50</option>
-                <option value="99">&#060; 100</option>
-                <option value="249">&#060; 250</option>
-                <option value="499">&#060; 500</option>
-                <option value="999">&#060; 1.000</option>
-                <option value="2499">&#060; 2.500</option>
-                <option value="4099">&#060; 5.000</option>
-                <option value="9999">&#060; 10.000</option>
-                <option value="12000">&#062; 10.000</option>
-              </select>
-            </div>
+        <!-- STEP 3 -->
+        <div v-show="step3">
+          <img class="icon-quiz" src="../assets/icons/icon-quiz-3.svg" />
+          <transition name="slide">
+            <div v-if="step3" class="questions">
+              <div class="section-1">
+                <h2>
+                  Anzahl der bei Amazon gelisteten Produkte (ohne Varianten)
+                </h2>
+                <div>
+                  <img
+                    class="icon-dropdown"
+                    src="../assets/icons/dropdown.svg"
+                  />
+                  <select v-model="productCount" class="select" name="products">
+                    <option selected disabled>Hier auswählen</option>
+                    <option value="9">&#060; 10</option>
+                    <option value="24">&#060; 25</option>
+                    <option value="49">&#060; 50</option>
+                    <option value="99">&#060; 100</option>
+                    <option value="249">&#060; 250</option>
+                    <option value="499">&#060; 500</option>
+                    <option value="999">&#060; 1.000</option>
+                    <option value="2499">&#060; 2.500</option>
+                    <option value="4099">&#060; 5.000</option>
+                    <option value="9999">&#060; 10.000</option>
+                    <option value="12000">&#062; 10.000</option>
+                  </select>
+                </div>
 
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
-          <div class="section-2">
-            <h2>
-              Anteil von Eigenmarken an den gelisteten Produkten in Prozent
-            </h2>
-            <div>
-              <p>%</p>
-              <input
-                type="text"
-                placeholder="xx"
-                v-model="ownProductsPercentage"
-                @input="checkProportion(ownProductsPercentage)"
-              />
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
+              <div class="section-2">
+                <h2>
+                  Anteil von Eigenmarken an den gelisteten Produkten in Prozent
+                </h2>
+                <div>
+                  <p>%</p>
+                  <input
+                    type="text"
+                    placeholder="xx"
+                    v-model="ownProductsPercentage"
+                    @input="checkProportion(ownProductsPercentage)"
+                  />
+                </div>
+                <img class="icon-line" src="../assets/icons/line.svg" />
+              </div>
             </div>
-            <img class="icon-line" src="../assets/icons/line.svg" />
-          </div>
+          </transition>
         </div>
-      </transition>
-      <div class="bg-bottom orange"></div>
+      </div>
     </div>
 
     <!-- WEITER -->
@@ -187,7 +200,8 @@
         <span v-else :class="{ 'clr-purple': step2 }">Berechnen</span>
       </button>
     </div>
-    <Disclaimer class="disclaimer" />
+
+    <Disclaimer />
   </div>
 </template>
 
@@ -214,8 +228,7 @@ export default {
     };
   },
   mounted() {
-    document.querySelector('body').style.backgroundColor =
-      'var(--clr-orange-100)';
+    document.querySelector('body').style.backgroundColor = '#9300D9';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
     this.step1 = true;
@@ -225,15 +238,16 @@ export default {
       if (this.step1 === true) {
         this.step1 = false;
         this.step2 = true;
-        document.querySelector('body').style.backgroundColor =
-          'var(--clr-purple-200)';
+        document.querySelector('body').style.backgroundColor = '#9300D9';
         document.getElementsByClassName('nav')[0].style.color =
-          'var(--clr-orange-100)';
+          'var(--clr-purple-100)';
       } else if (this.step2 === true) {
         this.step2 = false;
         this.step3 = true;
         document.querySelector('body').style.backgroundColor =
-          'var(--clr-purple-100)';
+          'var(--clr-orange-100)';
+        document.getElementsByClassName('nav')[0].style.color =
+          'var(--clr-orange-100)';
       } else if (this.step3 === true) {
         const result = this.calculateResult();
         this.$store.dispatch('saveResult', result);
@@ -244,8 +258,7 @@ export default {
     },
     back() {
       if (this.step2 === true) {
-        document.querySelector('body').style.backgroundColor =
-          'var(--clr-orange-100)';
+        document.querySelector('body').style.backgroundColor = '#9300D9';
         document.getElementsByClassName('nav')[0].style.color =
           'var(--clr-purple-100)';
         if (this.errors[2] != '' || this.errors[3] != '') {
@@ -258,7 +271,7 @@ export default {
         this.step2 = false;
       } else if (this.step3 === true) {
         document.querySelector('body').style.backgroundColor =
-          'var(--clr-purple-200)';
+          'var(--clr-orange-100)';
         if (this.errors[4] != '') {
           this.ownProductsPercentage = '';
           this.errors[4] = '';
@@ -434,24 +447,56 @@ select {
   cursor: pointer;
 }
 
-.bg-bottom {
-  &.purple {
-    background-image: url('../assets/backgrounds/bg-bottom-purple.svg');
-    &.light {
-      background-image: url('../assets/backgrounds/bg-bottom-purple-light.svg');
+// .bg-bottom {
+//   &.purple {
+//     background-image: url('../assets/backgrounds/bg-bottom-purple.svg');
+//     &.light {
+//       background-image: url('../assets/backgrounds/bg-bottom-purple-light.svg');
+//     }
+//   }
+//   &.orange {
+//     background-image: url('../assets/backgrounds/bg-bottom-orange.svg');
+//   }
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   background-position: top;
+//   height: 400px;
+// }
+
+.heading-container {
+  h1 {
+    color: var(--clr-white-100);
+    font-size: var(--fs-800);
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .bg-top {
+    &.purple {
+      background-image: url('../assets/backgrounds/bg-top-purple.svg');
+      &.light {
+        background-image: url('../assets/backgrounds/bg-top-purple-light.svg');
+      }
     }
-  }
+    &.orange {
+      background-image: url('../assets/backgrounds/bg-top-orange.svg');
+    }
 
-  &.orange {
-    background-image: url('../assets/backgrounds/bg-bottom-orange.svg');
-  }
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    // min-height: 50rem;
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 80vh;
-  z-index: -100;
-  width: 100%;
+    // @media (min-width: 90.5em) {
+    //   min-height: 46.875rem;
+    // }
+
+    // @media (min-width: 131em) {
+    //   min-height: 53.125rem;
+    // }
+  }
 }
 
 .questions {
@@ -501,6 +546,7 @@ select {
       .icon-calendar {
         display: inline;
         margin-right: 38px;
+        z-index: 500;
       }
 
       ::v-deep .vdp-datepicker {
@@ -538,6 +584,7 @@ select {
     .icon-dropdown {
       display: inline;
       margin-right: 20px;
+      z-index: 500;
     }
   }
 
@@ -568,7 +615,7 @@ select {
   top: 6em;
   right: 5em;
   max-height: 100vh;
-  z-index: -10;
+  z-index: 500;
 
   @media (max-width: 81em) {
     display: none;
@@ -588,7 +635,7 @@ select {
   }
 
   button {
-    margin: 1em 4em 2em 0;
+    margin: 0 4em 2em 0;
 
     &:hover {
       background-color: var(--clr-white-100);
@@ -649,7 +696,7 @@ select {
 }
 
 .disclaimer {
-  margin-top: 3em;
+  margin-bottom: 1em;
   @media (max-width: 55em) {
     display: none;
   }

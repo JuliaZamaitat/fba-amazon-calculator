@@ -94,6 +94,8 @@ export default {
         );
       }
       this.filterPosts();
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
     filterPosts() {
       if (this.selectedCatgeories.length == 0) {
@@ -123,6 +125,8 @@ export default {
     updateShownPosts(pageNum) {
       this.pageNum = pageNum;
       this.filterPosts();
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
     calculateShownPostsBasedOnPageNumber() {
       let r = this.pageNum - 1;
