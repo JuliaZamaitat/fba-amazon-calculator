@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="heading-container">
-      <img class="icon-quiz" src="../assets/icons/icon-startseite.svg" />
-      <div class="heading">
-        <h1>Amazon FBA Wertermittlung</h1>
-        <h2>Berechne jetzt kostenlos den Wert deines Amazon FBA Business.</h2>
-        <button @click="openQuiz()">Jetzt Starten</button>
+      <div class="bg-top">
+        <img class="icon-quiz" src="../assets/icons/icon-startseite.svg" />
+        <div class="heading">
+          <h1>Amazon FBA Wertermittlung</h1>
+          <h2>Berechne jetzt kostenlos den Wert deines Amazon FBA Business.</h2>
+          <button @click="openQuiz()">Jetzt Starten</button>
+        </div>
       </div>
     </div>
-    <div class="bg-bottom"></div>
   </div>
 </template>
 
@@ -16,9 +17,11 @@
 export default {
   mounted() {
     document.querySelector('body').style.backgroundColor =
-      'var(--clr-purple-100)';
+      'var(--clr-orange-100)';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-white-100)';
+    document.getElementsByClassName('link')[0].className = 'link white';
+    document.getElementsByClassName('link')[1].className = 'link white';
   },
   methods: {
     openQuiz() {
@@ -35,17 +38,25 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-.heading {
-  margin-top: 9em;
-  margin-left: 4em;
-  max-width: 55vw;
+  .bg-top {
+    background-image: url('../assets/backgrounds/bg-top-purple-large.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    min-height: 700px;
+    width: 100%;
+  }
+  .heading {
+    margin-top: 9em;
+    margin-left: 4em;
+    max-width: 55vw;
 
-  @media (max-width: 55em) {
-    font-size: 1.7rem;
-    margin-top: 6em;
-    margin-left: 1em;
-    max-width: 90vw;
+    @media (max-width: 55em) {
+      font-size: 1.7rem;
+      margin-top: 6em;
+      margin-left: 1em;
+      max-width: 90vw;
+    }
   }
 }
 
@@ -55,6 +66,7 @@ export default {
   right: 7em;
   max-height: 100vh;
   z-index: -10;
+  z-index: 500;
 
   @media (max-width: 81em) {
     display: none;
@@ -91,15 +103,5 @@ button {
     background-color: var(--clr-orange-100);
     color: var(--clr-white-100);
   }
-}
-
-.bg-bottom {
-  background-image: url('../assets/backgrounds/bg-bottom-orange.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 80vh;
-  z-index: -100;
-  width: 100%;
 }
 </style>

@@ -8,6 +8,7 @@
         <p v-if="result" class="result-price">
           {{ result.min }}€ - {{ result.max }}€
         </p>
+        <p v-else>xxxx€ - xxxx€</p>
         <p class="result-desktop">
           Erhalte Tipps wie du den Wert deines
           <strong>Amazon FBA Business</strong> steigerst, sowie die detaillierte
@@ -133,6 +134,8 @@ export default {
       'var(--clr-orange-100)';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
+    document.getElementsByClassName('link')[0].className = 'link purple';
+    document.getElementsByClassName('link')[1].className = 'link purple';
   },
   methods: {
     markChecked() {

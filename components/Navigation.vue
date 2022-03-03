@@ -1,8 +1,12 @@
 <template>
   <div class="nav">
     <div class="nav nav-desktop">
-      <NuxtLink to="/">Amazon FBA Rechner</NuxtLink>
-      <NuxtLink to="/blog">Blog</NuxtLink>
+      <div class="wrapper">
+        <NuxtLink class="link" to="/">Amazon FBA Rechner</NuxtLink>
+      </div>
+      <div class="wrapper">
+        <NuxtLink class="link" to="/blog">Blog</NuxtLink>
+      </div>
     </div>
     <div class="nav nav-mobile" v-if="!open">
       <button @click="toggleMenu">
@@ -66,15 +70,61 @@ export default {
   top: 15px;
   width: 100vw;
 }
+
+.nav-desktop {
+  .wrapper {
+    position: relative;
+    display: inline;
+    &:not(:last-of-type) {
+      margin-right: 0.8em;
+    }
+  }
+  a {
+    position: relative;
+    display: inline-block;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      background-color: white;
+
+      transition: transform 0.3s;
+    }
+    &.purple {
+      &:after {
+        background-color: var(--clr-purple-100);
+      }
+    }
+
+    &.orange {
+      &:after {
+        background-color: var(--clr-orange-100);
+      }
+    }
+    &.white {
+      &:after {
+        background-color: var(--clr-white-100);
+      }
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
 .nav-desktop,
 .nav-mobile {
   font-size: var(--fs-400);
   text-align: right;
   right: 2em;
-
-  a:not(:last-of-type) {
-    margin-right: 0.8em;
-  }
 
   @media (max-width: 55em) {
     display: none;

@@ -73,7 +73,7 @@ export default {
     this.categories = getters.getCategories;
     this.posts = getters.getPosts;
     this.shownPosts = Array.from(this.posts);
-    this.updateShownPosts(this.pageNum);
+    this.filterPosts();
     this.loading = false;
   },
   mounted() {
@@ -81,6 +81,8 @@ export default {
       'var(--clr-purple-100)';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
+    document.getElementsByClassName('link')[0].className = 'link purple';
+    document.getElementsByClassName('link')[1].className = 'link purple';
   },
 
   methods: {

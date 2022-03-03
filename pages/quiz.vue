@@ -231,6 +231,10 @@ export default {
     document.querySelector('body').style.backgroundColor = '#9300D9';
     document.getElementsByClassName('nav')[0].style.color =
       'var(--clr-purple-100)';
+    console.log(document.getElementsByClassName('link')[0]);
+    document.getElementsByClassName('link')[0].className = 'link purple';
+    document.getElementsByClassName('link')[1].className = 'link purple';
+
     this.step1 = true;
   },
   methods: {
@@ -238,9 +242,12 @@ export default {
       if (this.step1 === true) {
         this.step1 = false;
         this.step2 = true;
-        document.querySelector('body').style.backgroundColor = '#9300D9';
-        document.getElementsByClassName('nav')[0].style.color =
+        document.querySelector('body').style.backgroundColor =
           'var(--clr-purple-100)';
+        document.getElementsByClassName('nav')[0].style.color =
+          'var(--clr-orange-100)';
+        document.getElementsByClassName('link')[0].className = 'link orange';
+        document.getElementsByClassName('link')[1].className = 'link orange';
       } else if (this.step2 === true) {
         this.step2 = false;
         this.step3 = true;
@@ -248,6 +255,8 @@ export default {
           'var(--clr-orange-100)';
         document.getElementsByClassName('nav')[0].style.color =
           'var(--clr-orange-100)';
+        document.getElementsByClassName('link')[0].className = 'link orange';
+        document.getElementsByClassName('link')[1].className = 'link orange';
       } else if (this.step3 === true) {
         const result = this.calculateResult();
         this.$store.dispatch('saveResult', result);
@@ -258,9 +267,12 @@ export default {
     },
     back() {
       if (this.step2 === true) {
-        document.querySelector('body').style.backgroundColor = '#9300D9';
+        document.querySelector('body').style.backgroundColor =
+          'var(--clr-purple-100)';
         document.getElementsByClassName('nav')[0].style.color =
           'var(--clr-purple-100)';
+        document.getElementsByClassName('link')[0].className = 'link purple';
+        document.getElementsByClassName('link')[1].className = 'link purple';
         if (this.errors[2] != '' || this.errors[3] != '') {
           this.netSales = '';
           this.ebitda = '';
@@ -474,9 +486,9 @@ select {
 
   .bg-top {
     &.purple {
-      background-image: url('../assets/backgrounds/bg-top-purple.svg');
+      background-image: url('../assets/backgrounds/bg-top-purple-large.svg');
       &.light {
-        background-image: url('../assets/backgrounds/bg-top-purple-light.svg');
+        background-image: url('../assets/backgrounds/bg-top-purple-light-large.svg');
       }
     }
     &.orange {
@@ -487,7 +499,7 @@ select {
     background-size: cover;
     background-position: bottom;
     width: 100%;
-    // min-height: 50rem;
+    min-height: 37rem;
 
     // @media (min-width: 90.5em) {
     //   min-height: 46.875rem;
@@ -627,6 +639,7 @@ select {
   flex-wrap: wrap;
   justify-content: flex-end;
   max-width: 38.5em;
+  margin-top: -1rem;
   ul,
   li {
     text-align: right;

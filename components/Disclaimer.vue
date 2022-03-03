@@ -22,10 +22,10 @@ export default {};
     font-size: 12px;
     color: var(--clr-white-100);
     opacity: 80%;
-    width: 80vw;
     margin-left: 6.6em;
     line-height: 15px;
     letter-spacing: 0.1em;
+    max-width: 60vw;
   }
 }
 </style>
