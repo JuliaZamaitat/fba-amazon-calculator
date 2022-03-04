@@ -38,7 +38,7 @@ export const actions = {
       posts = posts
         .filter((el) => el.status === 'publish')
         .map(
-          ({ id, slug, title, excerpt, date, tags, content, categories }) => ({
+          ({
             id,
             slug,
             title,
@@ -46,7 +46,20 @@ export const actions = {
             date,
             tags,
             content,
-            categories
+            categories,
+            yoast_head_json
+          }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            categories,
+            icon: yoast_head_json.og_image
+              ? yoast_head_json.og_image[0]
+              : undefined
           })
         );
       commit('SET_POSTS', posts);

@@ -1,12 +1,8 @@
 <template>
   <div class="card">
     <a :href="`/blog/${post.slug}`">
-      <div class="card__header">
-        <img
-          src="../assets/icons/icon-post.svg"
-          alt="card__image"
-          class="card__image"
-        />
+      <div class="card__header" :style="{ backgroundColor: color }">
+        <img v-if="post.icon" :src="post.icon.url" class="card__image" />
       </div>
       <div class="card__body">
         <h3>
@@ -29,7 +25,8 @@
 <script>
 export default {
   props: {
-    post: Object
+    post: Object,
+    color: String
   },
   computed: {
     truncatedText() {
@@ -68,7 +65,7 @@ export default {
     justify-content: center;
     width: 100%;
     min-height: 12rem;
-    background-color: var(--clr-purple-100);
+    // background-color: var(--clr-purple-100);
   }
 
   .card__body {

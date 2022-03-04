@@ -80,6 +80,8 @@ export default {
       'var(--clr-purple-300)';
     document.getElementsByClassName('copyright')[0].style.fontWeight =
       'var(--fw-300)';
+    document.getElementsByClassName('link')[0].className = 'link white';
+    document.getElementsByClassName('link')[1].className = 'link white';
   }
 };
 </script>

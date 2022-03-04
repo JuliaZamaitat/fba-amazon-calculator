@@ -21,8 +21,8 @@
     </div>
     <div class="content" v-if="!loading">
       <div class="posts">
-        <div v-for="post in shownPosts" :key="post.id" class="post">
-          <Post :post="post" />
+        <div v-for="(post, i) in shownPosts" :key="post.id" class="post">
+          <Post :post="post" :color="colors[i % colors.length]" />
         </div>
       </div>
       <div>
@@ -61,7 +61,8 @@ export default {
       shownPosts: [],
       pageCount: 1,
       pageNum: 1,
-      numberOfPostsOnPage: 6
+      numberOfPostsOnPage: 6,
+      colors: ['#FFFFFF', '#FFB72C', '#C038F0', '#3FA0C7', '#FF912D', '#F06437']
     };
   },
 

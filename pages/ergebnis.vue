@@ -67,15 +67,15 @@
       <h2 class="uppercase">Unser Blog</h2>
 
       <div class="blog blog-posts desktop">
-        <div v-for="post in posts" :key="post.id" class="post">
-          <Post :post="post" />
+        <div v-for="(post, i) in posts" :key="post.id" class="post">
+          <Post :post="post" :color="colors[i % colors.length]" />
         </div>
       </div>
 
       <div class="blog blog-posts mobile">
         <Swiper :options="swiperOptions">
-          <SwiperSlide v-for="post in posts" :key="post.id">
-            <Post :post="post" />
+          <SwiperSlide v-for="(post, i) in posts" :key="post.id">
+            <Post :post="post" :color="colors[i % colors.length]" />
           </SwiperSlide>
           <div class="swiper-pagination" slot="pagination" />
         </Swiper>
@@ -115,7 +115,8 @@ export default {
           type: 'bullets',
           clickable: true
         }
-      }
+      },
+      colors: ['#FFB72C', '#C038F0', '#3FA0C7']
     };
   },
   computed: {
