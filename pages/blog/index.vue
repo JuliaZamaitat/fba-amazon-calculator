@@ -187,6 +187,7 @@ export default {
         flex-wrap: wrap;
         margin-block: 2rem;
         gap: 1rem;
+
         @media (max-width: 55em) {
           width: 80vw;
         }

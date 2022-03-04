@@ -39,6 +39,12 @@ button {
   height: auto;
   padding: 0.5rem 0.6rem;
   font-weight: var(--fw-medium);
+  transition-duration: 0.1s;
+
+  &:hover {
+    border: 3px solid white;
+    margin: -1px;
+  }
 
   &.selected {
     background-color: white;
