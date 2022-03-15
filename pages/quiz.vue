@@ -26,7 +26,6 @@
                       @input="checkDuration()"
                   /></client-only>
                 </div>
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
               <div class="section-2">
                 <h2>Anteil von Amazon Umsatz in Prozent von Gesamtumsatz</h2>
@@ -34,7 +33,7 @@
                   Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
                   Gesamtumsatz.
                 </p>
-                <div>
+                <div class="input-field">
                   <p>%</p>
                   <input
                     @input="checkSalesVolume(percentage)"
@@ -43,7 +42,6 @@
                     v-model="percentage"
                   />
                 </div>
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
             </div>
           </transition>
@@ -58,7 +56,7 @@
                 <h2>
                   Wie hoch ist dein durchschnittlicher monatlicher Nettoumsatz?
                 </h2>
-                <div>
+                <div class="input-field">
                   <p>€</p>
                   <input
                     type="text"
@@ -67,8 +65,6 @@
                     @input="checkNetSales(netSales)"
                   />
                 </div>
-
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
               <div class="section-2">
                 <h2>
@@ -79,7 +75,7 @@
                   Umsatz deiner über Amazon erzielten Verkäufe im Verhältnis zum
                   Gesamtumsatz.
                 </p>
-                <div>
+                <div class="input-field">
                   <p>€</p>
                   <input
                     type="text"
@@ -88,7 +84,6 @@
                     @input="checkEbitda(ebitda)"
                   />
                 </div>
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
             </div>
           </transition>
@@ -103,7 +98,7 @@
                 <h2>
                   Anzahl der bei Amazon gelisteten Produkte (ohne Varianten)
                 </h2>
-                <div>
+                <div class="input-field">
                   <img
                     class="icon-dropdown"
                     src="../assets/icons/dropdown.svg"
@@ -123,14 +118,12 @@
                     <option value="12000">&#062; 10.000</option>
                   </select>
                 </div>
-
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
               <div class="section-2">
                 <h2>
                   Anteil von Eigenmarken an den gelisteten Produkten in Prozent
                 </h2>
-                <div>
+                <div class="input-field">
                   <p>%</p>
                   <input
                     type="text"
@@ -139,7 +132,6 @@
                     @input="checkProportion(ownProductsPercentage)"
                   />
                 </div>
-                <img class="icon-line" src="../assets/icons/line.svg" />
               </div>
             </div>
           </transition>
@@ -446,6 +438,7 @@ button,
 select {
   font-family: 'Montserrat', sans-serif;
 }
+
 .slide-enter {
   transform: translateY(400px);
 }
@@ -494,20 +487,11 @@ select {
     &.orange {
       background-image: url('../assets/backgrounds/bg-top-orange.svg');
     }
-
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
     width: 100%;
     min-height: 37rem;
-
-    // @media (min-width: 90.5em) {
-    //   min-height: 46.875rem;
-    // }
-
-    // @media (min-width: 131em) {
-    //   min-height: 53.125rem;
-    // }
   }
 }
 
@@ -544,9 +528,6 @@ select {
   //   }
   // }
 
-  .icon-line {
-    margin-top: 0.5em;
-  }
   .section-1 {
     .calendar {
       font-family: 'Montserrat', sans-serif;
@@ -581,7 +562,7 @@ select {
         }
 
         &:focus-visible {
-          outline: none;
+          outline: none !important;
         }
       }
 
@@ -600,9 +581,17 @@ select {
     }
   }
 
+  .input-field,
+  .calendar {
+    padding-top: 1.9em;
+    border-bottom: 1px solid white;
+    max-width: 34em;
+  }
+
   .section-1,
   .section-2 {
     text-align: left;
+    padding-top: 1.9em;
 
     p:first-of-type {
       margin-top: 0.6em;
@@ -610,7 +599,6 @@ select {
     }
 
     div {
-      padding-top: 1.9em;
       p:first-of-type {
         font-weight: var(--fw-bold);
         display: inline;
@@ -638,7 +626,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 38.5em;
+  max-width: 42em;
   margin-top: -1rem;
   ul,
   li {

@@ -14,7 +14,6 @@
           @blur="checkEmail(email)"
         />
       </div>
-      <img class="icon-line" src="../assets/icons/line.svg" />
       <div class="confirm">
         <ul>
           <li class="error-message" v-for="error in errors" :key="error.id">
@@ -91,6 +90,7 @@ h2 {
       align-items: flex-start;
       margin-top: 2.5em;
       max-width: 100%;
+      border-bottom: 1px solid white;
 
       input {
         display: inline;

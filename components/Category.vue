@@ -42,8 +42,7 @@ button {
   transition-duration: 0.1s;
 
   &:hover {
-    border: 3px solid white;
-    margin: -1px;
+    box-shadow: 0 0 0 1px white;
   }
 
   &.selected {

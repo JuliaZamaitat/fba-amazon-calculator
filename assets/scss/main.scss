@@ -150,8 +150,13 @@ input {
     font-weight: var(--fw-thin);
   }
    &:focus-visible {
-    outline: none;
+    outline: none !important;
   }
+
+  &:focus {
+    outline: none !important;
+  }
+
 }
 
 ol, ul {
