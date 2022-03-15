@@ -9,13 +9,15 @@
       </div>
     </div>
     <div class="nav nav-mobile" v-if="!open">
-      <button @click="toggleMenu">
+      <button class="burger" @click="toggleMenu">
         <img src="../assets/icons/burger-menu.svg" />
       </button>
     </div>
     <Transition name="fade">
       <div class="mobile-navigation-container" v-if="open">
-        <button class="close-btn" @click="toggleMenu">x</button>
+        <div class="close">
+          <button class="close-btn" @click="toggleMenu">x</button>
+        </div>
         <div class="links">
           <NuxtLink class="link" to="/" v-if="this.$route.path != '/quiz'"
             >Amazon FBA Rechner</NuxtLink
@@ -92,8 +94,10 @@ export default {
       height: 2px;
       transform: scaleX(0);
       background-color: white;
-
-      transition: transform 0.3s;
+      transition: transform 0.3s ease-in-out;
+    }
+    &:before {
+      transition: transform 0.3s ease-in-out;
     }
     &.purple {
       &:after {
@@ -120,11 +124,14 @@ export default {
   }
 }
 
+.nav-desktop {
+  right: 2em;
+}
+
 .nav-desktop,
 .nav-mobile {
   font-size: var(--fs-400);
   text-align: right;
-  right: 2em;
 
   @media (max-width: 55em) {
     display: none;
@@ -148,6 +155,16 @@ button {
   padding: 0;
   margin: 0;
   width: auto;
+
+  img {
+    display: inline;
+  }
+}
+
+.burger {
+  text-align: right;
+  padding: 0 10px;
+  margin-right: 2em;
 }
 
 .mobile-navigation-container {
@@ -158,15 +175,18 @@ button {
   bottom: 0;
   overflow: hidden;
   background-color: var(--clr-purple-100);
-  z-index: 500;
+  z-index: 600;
 
-  .close-btn {
-    font-size: 40px;
-    color: white;
-    width: auto;
-    position: fixed;
-    right: 1.7rem;
-    margin-top: 0.4rem;
+  .close {
+    text-align: right;
+    margin-right: 2em;
+
+    .close-btn {
+      font-size: 40px;
+      color: white;
+      text-align: right;
+      padding: 0 10px;
+    }
   }
   .links {
     display: flex;
