@@ -54,8 +54,10 @@ export default {
   margin: 0 auto;
   transition: 0.2s ease-in-out;
 
-  &:hover {
-    transform: translateY(-5px) scale(1.005) translateZ(0);
+  @media (min-width: 55em) {
+    &:hover {
+      transform: translateY(-5px) scale(1.005) translateZ(0);
+    }
   }
 
   img {
