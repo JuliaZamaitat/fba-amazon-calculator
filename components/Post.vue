@@ -52,6 +52,11 @@ export default {
   box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 1em;
   margin: 0 auto;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+  }
 
   img {
     max-width: 100%;
