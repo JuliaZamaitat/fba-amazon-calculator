@@ -513,13 +513,21 @@ select {
   // }
   input {
     &:focus-visible {
-      outline: 0px !important;
+      border-width: 0px;
+      outline: 0;
       -webkit-appearance: none;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
     }
 
     &:focus {
-      outline: 0px !important;
+      border-width: 0px;
+      outline: 0;
       -webkit-appearance: none;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
     }
   }
 
