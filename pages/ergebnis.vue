@@ -365,7 +365,7 @@ p {
     height: 0.375rem;
     background: #c4c4c4;
     border-radius: 6.25rem;
-    opacity: 100;
+    opacity: 1;
   }
   ::v-deep .swiper-pagination-bullet-active {
     width: 1.75rem;

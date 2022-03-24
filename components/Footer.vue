@@ -25,7 +25,7 @@ export default {};
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   color: var(--clr-white-100);
-  opacity: 70%;
+  opacity: 0.7;
   font-weight: var(--fw-thin);
 
   .uppercase {
