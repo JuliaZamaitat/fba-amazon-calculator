@@ -452,22 +452,6 @@ select {
   cursor: pointer;
 }
 
-// .bg-bottom {
-//   &.purple {
-//     background-image: url('../assets/backgrounds/bg-bottom-purple.svg');
-//     &.light {
-//       background-image: url('../assets/backgrounds/bg-bottom-purple-light.svg');
-//     }
-//   }
-//   &.orange {
-//     background-image: url('../assets/backgrounds/bg-bottom-orange.svg');
-//   }
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   background-position: top;
-//   height: 400px;
-// }
-
 .heading-container {
   h1 {
     color: var(--clr-white-100);

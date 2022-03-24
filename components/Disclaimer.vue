@@ -21,7 +21,7 @@ export default {};
     font-weight: var(--fw-thin);
     font-size: 12px;
     color: var(--clr-white-100);
-    opacity: 80%;
+    opacity: 0.8;
     margin-left: 6.6em;
     line-height: 15px;
     letter-spacing: 0.1em;
