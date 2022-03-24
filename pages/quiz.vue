@@ -511,6 +511,17 @@ select {
   //     // line-height: 20px;
   //   }
   // }
+  input {
+    &:focus-visible {
+      outline: 0px !important;
+      -webkit-appearance: none;
+    }
+
+    &:focus {
+      outline: 0px !important;
+      -webkit-appearance: none;
+    }
+  }
 
   .section-1 {
     .calendar {
