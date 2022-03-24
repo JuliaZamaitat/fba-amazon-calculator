@@ -137,6 +137,7 @@ select {
   font: inherit;
 }
 
+
 input {
   display: inline;
   cursor: pointer;
@@ -150,11 +151,13 @@ input {
     font-weight: var(--fw-thin);
   }
    &:focus-visible {
-    outline: none !important;
+    outline:0px !important;
+    -webkit-appearance:none;
   }
 
   &:focus {
-    outline: none !important;
+    outline:0px !important;
+    -webkit-appearance:none;
   }
 
 }
