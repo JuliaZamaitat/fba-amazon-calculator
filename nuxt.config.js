@@ -54,6 +54,13 @@ export default {
     ['@nuxtjs/dotenv', { systemvars: true }]
   ],
 
+  env: {
+    EMAILJS_SERVICE_ID: process.env.EMAILJS_SERVICE_ID,
+    EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID,
+    EMAILJS_USER_ID: process.env.EMAILJS_USER_ID,
+    EMAILJS_REDIRECT_TO: process.env.EMAILJS_REDIRECT_TO
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/style-resources'],
 
