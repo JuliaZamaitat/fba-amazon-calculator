@@ -51,7 +51,7 @@ export default {
   buildModules: [
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@nuxtjs/svg'],
-    ['@nuxtjs/dotenv']
+    ['@nuxtjs/dotenv', { systemvars: true }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
