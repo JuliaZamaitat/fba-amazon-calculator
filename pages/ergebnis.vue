@@ -157,6 +157,7 @@ export default {
       }
     },
     sendEmailResult() {
+      this.errors = [];
       if (
         !this.email ||
         (this.result &&
@@ -184,15 +185,21 @@ export default {
         concentration: (Math.round(converted[4]) / maxes[4]) * 10,
         focus: (Math.round(converted[5]) / maxes[5]) * 10
       };
-      emailjs.send(serviceID, templateID, templateParams, userID).then(
-        () => {
+      try {
+        const response = emailjs.send(
+          serviceID,
+          templateID,
+          templateParams,
+          userID
+        );
+        if (response) {
           console.log('sent');
           this.emailSent = true;
-        },
-        (err) => {
-          console.log(err);
         }
-      );
+      } catch (e) {
+        console.log(e);
+        this.errors.push('Etwas ist schiefgelaufen!');
+      }
     }
   }
 };
