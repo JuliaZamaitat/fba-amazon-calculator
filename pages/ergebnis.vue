@@ -169,8 +169,8 @@ export default {
       const userID = process.env.EMAILJS_USER_ID;
       const templateParams = {
         to: this.email,
-        // url: 'https://github.com/JuliaZamaitat/fba-amazon-calculator/blob/master/assets/backgrounds/email-background.svg', //has to be a public url
-        url: 'data:image/svg+xml;utf8,<svg width="595" height="1552" viewBox="0 0 595 1552" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="595" height="1552" fill="#9300D9"/><path d="M488 118C232.8 281.2 56.3333 155.667 0 72.5V0H595V82.5L589 83C557.4 85.8 508.5 107.5 488 118Z" fill="#FF912C"/><path d="M50.5 364.5C23.3 347.3 5.33333 347.667 0 350V548L1.5 549C59.5 589.8 176 616.333 227 624.5C380.2 648.5 536.167 589.833 595 557.5V335H594.5C574.667 343.833 516.9 358.5 444.5 346.5C354 331.5 276.5 364.5 213.5 390C150.5 415.5 84.5 386 50.5 364.5Z" fill="#FF912C"/><path d="M465 807.5C263 816.7 70.5 992.5 0 1079V1390C89.6 1211.6 434.333 1177.67 595 1183V816.5H594.5C558.1 807.3 493 806.667 465 807.5Z" fill="#AD00FF"/></svg>',
+        minMult: this.result.minMult,
+        maxMult: this.result.maxMult,
         minVal: `${this.result.min} €`,
         maxVal: `${this.result.max} €`,
         redirect_to: process.env.EMAILJS_REDIRECT_TO,
