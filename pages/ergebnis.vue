@@ -35,6 +35,9 @@
               <li class="error-message" v-for="error in errors" :key="error.id">
                 {{ error }}
               </li>
+              <li class="email-sent-message" v-if="emailSent">
+                Die Email wurde verschickt!
+              </li>
             </ul>
             <button
               @click="sendEmailResult()"
@@ -103,6 +106,7 @@ export default {
       email: '',
       errors: [],
       emailChecked: false,
+      emailSent: false,
       swiperOptions: {
         autoplay: {
           delay: 2500,
@@ -183,6 +187,7 @@ export default {
       emailjs.send(serviceID, templateID, templateParams, userID).then(
         () => {
           console.log('sent');
+          this.emailSent = true;
         },
         (err) => {
           console.log(err);
@@ -408,5 +413,9 @@ p {
 .error-message {
   color: rgb(252, 0, 0);
   margin-right: 0.3em;
+}
+
+.email-sent-message {
+  color: var(--clr-orange-100);
 }
 </style>
