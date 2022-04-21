@@ -9,53 +9,60 @@
     </div>
     <div class="content">
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet. Meine Überschrift Lorem
-        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-        justo duo dolores et ea rebum.
+        gittr.com ist ein Projekt der
+        <a href="https://firmcatalyst.de/"
+          >FirmCatalyst GmbH & Co. KG aus Berlin.</a
+        >
       </p>
-      <h3>Kleine Überschrift</h3>
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <p></p>
+
       <p>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-        ipsum dolor sit amet.
+        FirmCatalyst GmbH & Co. KG<br />Schreiberhauer Straße 4<br />10317
+        Berlin
+      </p>
+      <br />
+      <p>
+        Handelsregister: HRA 49813 B<br />Registergericht: Amtsgericht Berlin
+        (Charlottenburg)
+      </p>
+      <br />
+      <p>
+        <strong>Vertreten durch:</strong><br />FirmCatalyst Verwaltungs GmbH
+      </p>
+      <br />
+
+      <p>Diese vertreten durch:<br />Nils Cartsburg</p>
+      <h3>Kontakt</h3>
+      <p>
+        Telefon: +49(0) 156 785 535 92 <br />Telefax: +49 (0) 30 747526926
+        <br />E-Mail: support [at] firmcatalyst.com
+      </p>
+      <h3>Umsatzsteuer-ID</h3>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+        DE296480873
+      </p>
+      <h3>Redaktionell verantwortlich</h3>
+      <p>
+        FirmCatalyst GmbH & Co. KG<br />
+        Nils Cartsburg <br />Schreiberhauer Straße 4 <br />10317 Berlin
+      </p>
+      <h3>EU-Streitschlichtung</h3>
+      <p>
+        Die Europäische Kommission stellt eine Plattform zur
+        Online-Streitbeilegung (OS) bereit:
+        <a href="https://ec.europa.eu/consumers/odr/"
+          >https://ec.europa.eu/consumers/odr/</a
+        >. Unsere E-Mail-Adresse finden Sie oben im Impressum.
+      </p>
+      <h3>Verbraucher­streit­beilegung/Universal­schlichtungs­stelle</h3>
+      <p>
+        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
+        vor einer Verbraucherschlichtungsstelle teilzunehmen.
       </p>
     </div>
+
     <div class="footer-block">
       <div class="text">
         <Footer />
