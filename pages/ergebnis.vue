@@ -203,8 +203,7 @@ export default {
       }
       //Sending copy of email to us if user is interested in selling
       //TODO: Also send copy of email to us with the hint that the person is interested in selling when interestedInSelling == true
-      console.log(this.result.isinterestedInSelling);
-      if (!this.result.isinterestedInSelling) return;
+      if (!this.result.interestedInSelling) return;
       templateParams.to = 'julia.zamaitat@firmcatalyst.com';
       try {
         const response = emailjs.send(
