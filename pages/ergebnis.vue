@@ -174,6 +174,7 @@ export default {
       const userID = process.env.EMAILJS_USER_ID;
       const templateParams = {
         to: this.email,
+        userEmail: this.email,
         minMult: this.result.minMult,
         maxMult: this.result.maxMult,
         minVal: `${this.result.min} €`,
