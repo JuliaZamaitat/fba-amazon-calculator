@@ -133,6 +133,17 @@
                   />
                 </div>
               </div>
+              <div v-if="showCheckbox" class="saleCompany">
+                <input
+                  type="checkbox"
+                  name="saleCompany"
+                  v-model="interestedInSelling"
+                />
+                <label for="saleCompany"
+                  >Ich bin an einem Verkauf meines Unternehmens
+                  interessiert.</label
+                >
+              </div>
             </div>
           </transition>
         </div>
@@ -216,7 +227,9 @@ export default {
       ebitda: '',
       productCount: 'Hier auswählen',
       ownProductsPercentage: '',
-      rules: calculatorData
+      rules: calculatorData,
+      showCheckbox: false,
+      interestedInSelling: false
     };
   },
   mounted() {
@@ -297,19 +310,24 @@ export default {
           'Dein Unternehmen muss mind. 12 Monate alt sein für eine Bewertung';
       else this.months = months;
     },
+
     async checkSalesVolume(percentage) {
       this.checkedSalesVolume = false;
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      this.showCheckbox = false;
+      // await new Promise((resolve) => setTimeout(resolve, 300));
       Vue.set(this.errors, 1, '');
 
       if (isNaN(percentage) || percentage > 100 || percentage < 0)
         Vue.set(this.errors, 1, 'Ungültige Prozentangabe');
-      else if (this.percentage != '' && this.percentage < 60)
-        Vue.set(
-          this.errors,
-          1,
-          'Das Tool eignet sich erst zu einer Berechnung ab 60%'
-        );
+      else if (this.percentage != '' && this.percentage > 60)
+        this.showCheckbox = true;
+      // else if (this.percentage != '' && this.percentage < 60)
+      //   Vue.set(
+      //     this.errors,
+      //     1,
+      //     'Das Tool eignet sich erst zu einer Berechnung ab 60%'
+      //   );
+      //TODO: remember if over 60
       this.checkedSalesVolume = true;
     },
 
@@ -388,7 +406,9 @@ export default {
         minMult,
         maxMult,
         min,
-        max
+        max,
+        showCheckbox: this.showCheckbox,
+        interestedInSelling: this.interestedInSelling
       };
     },
     fcpConvert(value, rule) {
@@ -511,7 +531,7 @@ select {
   //     // line-height: 20px;
   //   }
   // }
-  input {
+  input:not([type='checkbox']) {
     &:focus-visible {
       border-width: 0px;
       outline: 0;
@@ -610,6 +630,15 @@ select {
   }
   .section-2 {
     margin-top: 3em; //4.15em;
+  }
+}
+
+.saleCompany {
+  text-align: left;
+  margin-top: 1em;
+
+  label {
+    color: var(--clr-white-100);
   }
 }
 

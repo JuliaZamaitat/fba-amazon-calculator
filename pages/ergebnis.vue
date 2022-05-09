@@ -200,6 +200,7 @@ export default {
         console.log(e);
         this.errors.push('Etwas ist schiefgelaufen!');
       }
+      //TODO: Also send copy of email to us with the hint that the person is interested in selling when interestedInSelling == true
     }
   }
 };
