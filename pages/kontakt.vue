@@ -56,6 +56,9 @@
           <li class="error-message" v-for="error in errors" :key="error.id">
             {{ error }}
           </li>
+          <li class="email-sent-message" v-if="emailSent">
+            Die Anfrage wurde verschickt!
+          </li>
         </ul>
         <button
           @click="sendContactMail()"
@@ -171,6 +174,10 @@ export default {
         if (response) {
           console.log('sent');
           this.emailSent = true;
+          this.email = '';
+          this.name = '';
+          this.message = '';
+          this.datenschutzChecked = false;
         }
       } catch (e) {
         console.log(e);
@@ -273,6 +280,11 @@ export default {
     height: 300px;
     resize: none;
   }
+}
+
+.email-sent-message {
+  color: var(--clr-purple-100);
+  list-style: none;
 }
 
 .confirm {
