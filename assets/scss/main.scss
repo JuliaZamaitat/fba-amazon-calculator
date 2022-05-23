@@ -83,7 +83,8 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+label {
   font-weight: var(--fw-regular);
 }
 
@@ -150,12 +151,12 @@ input {
     color: var(--clr-white-300);
     font-weight: var(--fw-thin);
   }
-   &:focus-visible {
+   &:not([type='checkbox']):focus-visible {
     outline:0px !important;
     -webkit-appearance:none;
   }
 
-  &:focus {
+  &:not([type='checkbox']):focus {
     outline:0px !important;
     -webkit-appearance:none;
   }
