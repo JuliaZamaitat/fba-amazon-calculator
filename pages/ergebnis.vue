@@ -170,7 +170,7 @@ export default {
       const maxes = this.result.maxes;
       const converted = this.result.converted;
       const serviceID = process.env.EMAILJS_SERVICE_ID;
-      const templateID = process.env.EMAILJS_TEMPLATE_ID;
+      const templateID = process.env.EMAILJS_TEMPLATE_ID_FBA_RESULT;
       const userID = process.env.EMAILJS_USER_ID;
       const templateParams = {
         to: this.email,

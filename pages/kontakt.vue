@@ -58,6 +58,7 @@
           </li>
         </ul>
         <button
+          @click="sendContactMail()"
           :disabled="
             errors.length != 0 ||
             email == '' ||
@@ -94,6 +95,8 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
   data() {
     return {
@@ -104,7 +107,8 @@ export default {
       emailChecked: false,
       nameChecked: false,
       messageChecked: false,
-      datenschutzChecked: false
+      datenschutzChecked: false,
+      emailSent: false
     };
   },
   methods: {
@@ -143,6 +147,35 @@ export default {
     },
     checkDatenschutzAgreement() {
       this.datenschutzChecked = !this.datenschutzChecked;
+    },
+    sendContactMail() {
+      this.errors = [];
+
+      const serviceID = process.env.EMAILJS_SERVICE_ID;
+      const templateID = process.env.EMAILJS_TEMPLATE_ID_CONTACT_FORM;
+      const userID = process.env.EMAILJS_USER_ID;
+
+      const templateParams = {
+        to: 'info@gittr.com',
+        userEmail: this.email,
+        userName: this.name,
+        message: this.message
+      };
+      try {
+        const response = emailjs.send(
+          serviceID,
+          templateID,
+          templateParams,
+          userID
+        );
+        if (response) {
+          console.log('sent');
+          this.emailSent = true;
+        }
+      } catch (e) {
+        console.log(e);
+        this.errors.push('Etwas ist schiefgelaufen!');
+      }
     }
   },
   mounted() {
