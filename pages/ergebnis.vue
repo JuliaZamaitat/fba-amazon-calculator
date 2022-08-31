@@ -441,6 +441,8 @@ p {
 }
 
 .email-sent-message {
-  color: var(--clr-orange-100);
+  color: var(--clr-white-100);
+  font-style: italic;
+  padding-right: 20px;
 }
 </style>
