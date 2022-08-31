@@ -94,18 +94,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep h1,
-::v-deep h2,
-::v-deep h3,
-::v-deep h4,
-::v-deep h5 {
+:deep h1,
+:deep h2,
+:deep h3,
+:deep h4,
+:deep h5 {
   padding: 2rem 0;
 }
-::v-deep ul,
-::v-deep ol {
+:deep ul,
+:deep ol {
   list-style: inherit;
 }
-::v-deep a {
+:deep a {
   text-decoration: underline;
   color: blue;
 }

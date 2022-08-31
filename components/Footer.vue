@@ -44,7 +44,7 @@ export default {};
   li {
     margin: 0 2.5rem;
 
-    ::v-deep a {
+    :deep a {
       text-decoration: none;
       color: inherit;
     }

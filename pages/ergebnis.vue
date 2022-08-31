@@ -390,14 +390,14 @@ p {
     bottom: 0;
   }
 
-  ::v-deep .swiper-pagination-bullet {
+  :deep .swiper-pagination-bullet {
     width: 0.68rem;
     height: 0.375rem;
     background: #c4c4c4;
     border-radius: 6.25rem;
     opacity: 1;
   }
-  ::v-deep .swiper-pagination-bullet-active {
+  :deep .swiper-pagination-bullet-active {
     width: 1.75rem;
     height: 0.375rem;
     background: #ffffff;

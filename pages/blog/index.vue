@@ -226,10 +226,10 @@ export default {
   justify-content: center;
   padding: 0;
 
-  ::v-deep li {
+  :eep li {
     color: var(--clr-white-100);
   }
-  ::v-deep li:not(:first-of-type, :last-of-type) {
+  :deep li:not(:first-of-type, :last-of-type) {
     width: 3rem;
     height: 3rem;
     display: flex;

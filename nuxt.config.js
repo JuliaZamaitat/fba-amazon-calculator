@@ -51,7 +51,23 @@ export default {
   buildModules: [
     ['@nuxtjs/eslint-module', { fix: true }],
     ['@nuxtjs/svg'],
-    ['@nuxtjs/dotenv', { systemvars: true }]
+    ['@nuxtjs/dotenv', { systemvars: true }],
+    [
+      '@nuxtjs/google-fonts',
+      {
+        families: {
+          Montserrat: {
+            wght: [300, 400, 500, 700, 900]
+          }
+        },
+        display: 'swap',
+        prefetch: false,
+        preconnect: false,
+        preload: false,
+        download: true,
+        base64: false
+      }
+    ]
   ],
 
   env: {

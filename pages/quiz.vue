@@ -565,7 +565,7 @@ select {
         z-index: 500;
       }
 
-      ::v-deep .vdp-datepicker {
+      :deep .vdp-datepicker {
         display: inline;
 
         div:first-of-type {
@@ -573,7 +573,7 @@ select {
         }
       }
 
-      ::v-deep .datepicker {
+      :deep .datepicker {
         border: none;
         background: transparent;
         color: var(--clr-white-100);
@@ -589,7 +589,7 @@ select {
         }
       }
 
-      ::v-deep .vdp-datepicker__calendar {
+      :deep .vdp-datepicker__calendar {
         border: none;
         border-radius: 10px;
         @media (max-width: 55em) {
