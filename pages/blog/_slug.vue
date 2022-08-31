@@ -132,6 +132,11 @@ export default {
   letter-spacing: 0.07em;
   font-size: var(--fs-400);
 
+  p {
+    max-width: 43em;
+    margin: auto;
+  }
+
   @media (max-width: 55em) {
     max-width: 85vw;
     margin-top: 3rem;
