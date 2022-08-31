@@ -58,6 +58,10 @@ export default {
     background-position: bottom;
     min-height: 700px;
     width: 100%;
+
+    @media (min-width: 1500px) {
+      min-height: 850px;
+    }
   }
   .heading {
     margin-top: 9em;
@@ -69,6 +73,11 @@ export default {
       margin-top: 6em;
       margin-left: 1em;
       max-width: 90vw;
+    }
+
+    @media (min-width: 1500px) {
+      margin-top: 19em;
+      margin-left: 6em;
     }
   }
 }
@@ -83,6 +92,11 @@ export default {
 
   @media (max-width: 81em) {
     display: none;
+  }
+
+  @media (min-width: 1500px) {
+    top: 12em;
+    height: 650px;
   }
 }
 
