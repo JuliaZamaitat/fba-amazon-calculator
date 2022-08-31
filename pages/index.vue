@@ -8,6 +8,19 @@
           <h2>Berechne jetzt kostenlos den Wert deines Amazon FBA Business.</h2>
           <button @click="openQuiz()">Jetzt Starten</button>
         </div>
+        <div class="footer">
+          <ul class="uppercase">
+            <li class="link" name="Datenschutz">
+              <NuxtLink to="/datenschutz">Datenschutz</NuxtLink>
+            </li>
+            <li class="link" name="Impressum">
+              <NuxtLink to="/impressum">Impressum</NuxtLink>
+            </li>
+          </ul>
+          <div class="copyright">
+            <p>Copyright 2022 gittr</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -102,6 +115,37 @@ button {
   &:hover {
     background-color: var(--clr-orange-100);
     color: var(--clr-white-100);
+  }
+}
+
+.footer {
+  position: absolute;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: baseline;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--clr-white-100);
+  opacity: 0.7;
+  font-weight: var(--fw-thin);
+
+  .uppercase {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    li {
+      padding-right: 15px;
+    }
+  }
+
+  .copyright {
+    margin-right: 20px;
+    p {
+      font-weight: var(--fw-thin);
+      font-size: 12px;
+    }
   }
 }
 </style>

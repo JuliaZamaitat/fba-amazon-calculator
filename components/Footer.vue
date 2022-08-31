@@ -12,7 +12,7 @@
         <NuxtLink to="/datenschutz">Datenschutz</NuxtLink>
       </li>
     </ul>
-    <p class="copyright">Copyright 2021</p>
+    <p class="copyright">Copyright 2022</p>
   </div>
 </template>
 
