@@ -1,2 +1,3 @@
-/api/*  http://b10ptpl.myraidbox.de/wp-json/wp/v2/:splat  200!
+
+/api/* https://content.gittr.com/wp-json/wp/v2 200!
 
