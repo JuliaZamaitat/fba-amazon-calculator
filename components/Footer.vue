@@ -26,12 +26,12 @@ export default {};
   text-align: center;
   color: var(--clr-white-100);
   opacity: 0.7;
-  font-weight: var(--fw-thin);
 
   .uppercase {
     display: flex;
     justify-content: center;
     padding: 0;
+    font-weight: var(--fw-thin) !important;
 
     @media (max-width: 55em) {
       flex-direction: column;

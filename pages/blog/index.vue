@@ -245,7 +245,7 @@ export default {
       color: #44364a;
     }
     &.active {
-      color: #44364a;
+      color: var(--clr-white-100);
     }
   }
 }
