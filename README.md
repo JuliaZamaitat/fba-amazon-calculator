@@ -1,6 +1,8 @@
 # fba-amazon-calculator
 
-This is a project built for [FirmCatalyst](https://firmcatalyst.de) to enable sellers on Amazon to calculate the value of their Amazon FBA Business.
+This is a project built with Static Site Generation by [Nuxt](https://nuxtjs.org), developed for [FirmCatalyst](https://firmcatalyst.de) to enable sellers on Amazon to calculate the value of their Amazon FBA Business.
+
+A live version can be found on [https://gittr.com](https://gittr.com), deployed with [Vercel](https://vercel.com).
 
 ## Build Setup
 
