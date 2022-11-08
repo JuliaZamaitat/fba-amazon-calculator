@@ -71,6 +71,7 @@ export default {
 :deep ul,
 :deep ol {
   list-style: inherit;
+  margin-top: 0;
 }
 :deep a {
   text-decoration: underline;
@@ -132,9 +133,18 @@ export default {
   letter-spacing: 0.07em;
   font-size: var(--fs-400);
 
-  p {
+  :deep p {
     max-width: 43em;
     margin: auto;
+    padding-bottom: 1.5rem;
+  }
+
+  :deep img,
+  :deep picture {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1rem;
   }
 
   @media (max-width: 55em) {

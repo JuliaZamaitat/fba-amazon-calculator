@@ -12,7 +12,7 @@
           <p>Von:</p>
           <p class="bold purple">gittr</p>
           <p class="bold">|</p>
-          <p class="bold purple">Nov: 18, 2021</p>
+          <p class="bold purple" v-html="date"></p>
           <p class="bold">|</p>
           <p class="bold purple">Amazon FBA</p>
         </div>
@@ -36,6 +36,29 @@ export default {
       );
       const excerptText = parsedExcerpt.body.innerText.trim();
       return excerptText.slice(0, 130).concat('…');
+    },
+
+    date() {
+      const monthNames = [
+        'Jan',
+        'Fe',
+        'Mär',
+        'Apr',
+        'Mai',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dez'
+      ];
+      const d = new Date(this.post.date);
+      const month = d.getMonth();
+      const day = d.getDate();
+      const year = d.getFullYear();
+
+      return `${monthNames[month]}: ${day}, ${year}`;
     }
   }
 };
@@ -71,7 +94,8 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 12rem;
+    min-height: 13rem;
+    max-height: 13rem;
     // background-color: var(--clr-purple-100);
   }
 
@@ -107,6 +131,12 @@ export default {
       line-height: 20px;
       letter-spacing: 0.1em;
     }
+  }
+  .card__image {
+    max-height: 13rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>
