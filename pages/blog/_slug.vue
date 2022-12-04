@@ -72,6 +72,9 @@ export default {
 :deep ol {
   list-style: inherit;
   margin-top: 0;
+  li {
+    padding-bottom: 1rem;
+  }
 }
 :deep a {
   text-decoration: underline;

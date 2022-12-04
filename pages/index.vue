@@ -84,8 +84,9 @@ export default {
 
 .icon-quiz {
   position: absolute;
-  top: 6em;
-  right: 7em;
+  height: 90%;
+  top: 3em;
+  right: 5em;
   max-height: 100vh;
   z-index: -10;
   z-index: 500;
@@ -103,11 +104,12 @@ export default {
 h2,
 button {
   color: var(--clr-white-100);
+  font-weight: var(--fw-medium);
 }
 
 h1 {
   font-weight: var(--fw-extra-bold);
-  color: var(--clr-orange-100);
+  color: var(--clr-white-100);
   font-size: 2.2rem;
 
   @media (max-width: 81em) {
@@ -116,7 +118,7 @@ h1 {
 }
 
 h2 {
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-thin);
   margin-top: 0.7em;
   @media (max-width: 81em) {
     font-size: 1.5rem;
