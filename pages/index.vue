@@ -88,7 +88,6 @@ export default {
   top: 3em;
   right: 5em;
   max-height: 100vh;
-  z-index: -10;
   z-index: 500;
 
   @media (max-width: 81em) {

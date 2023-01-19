@@ -22,13 +22,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      // {
-      //   rel: 'stylesheet',
-      //   href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'
-      // }
-    ]
+    link: [{ rel: 'icon', type: 'image/png', href: '/icon_small.png' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

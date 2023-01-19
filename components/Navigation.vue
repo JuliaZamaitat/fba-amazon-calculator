@@ -1,5 +1,9 @@
 <template>
   <div class="nav">
+    <div class="logo">
+      <a href="/"><img src="../static/icon.svg" /></a>
+    </div>
+
     <div class="nav nav-desktop">
       <div class="wrapper">
         <NuxtLink class="link" to="/">Amazon FBA Rechner</NuxtLink>
@@ -72,6 +76,13 @@ export default {
   top: 15px;
   width: 100vw;
 }
+.logo {
+  display: inline-block;
+  width: 100px;
+  position: absolute;
+  left: 2em;
+  top: 0.5em;
+}
 
 .nav-desktop {
   .wrapper {
@@ -139,6 +150,10 @@ export default {
 }
 .nav-mobile {
   display: none;
+
+  .logo {
+    left: 1em;
+  }
 }
 
 @media (max-width: 55em) {
