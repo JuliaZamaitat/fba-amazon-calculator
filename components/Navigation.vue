@@ -23,7 +23,7 @@
           <button class="close-btn" @click="toggleMenu">x</button>
         </div>
         <div class="links">
-          <NuxtLink class="link" to="/" v-if="this.$route.path != '/quiz'"
+          <NuxtLink class="link" to="/" v-if="this.$route.path != '/'"
             >Amazon FBA Rechner</NuxtLink
           >
           <NuxtLink class="link" to="/blog" v-if="this.$route.path != '/blog'"
@@ -82,6 +82,7 @@ export default {
   position: absolute;
   left: 2em;
   top: 0.5em;
+  z-index: 1;
 }
 
 .nav-desktop {
@@ -193,9 +194,10 @@ button {
   z-index: 600;
 
   .close {
+    position: relative;
+    z-index: 1;
     text-align: right;
     margin-right: 2em;
-
     .close-btn {
       font-size: 40px;
       color: white;
@@ -204,6 +206,8 @@ button {
     }
   }
   .links {
+    position: absolute;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
